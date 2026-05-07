@@ -1,0 +1,56 @@
+/* 🔥 카테고리 영역 (hero 아래) */
+.categories {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 🔥 드롭다운 전체 */
+.dropdown-category {
+  position: relative;
+  display: inline-block;
+}
+
+/* 🔥 버튼 (중복 제거 + 통일) */
+.category {
+  padding: 15px 25px;
+  background: #f4f4f4;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.category:hover {
+  background: #ddd;
+}
+
+/* 🔥 드롭다운 메뉴 */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: white;
+  border: 1px solid #ccc;
+  min-width: 150px;
+
+  z-index: 999;
+}
+
+/* 메뉴 항목 */
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #eee;
+}
+
+/* 🔥 핵심: hover 시만 표시 */
+.dropdown-category:hover .dropdown-menu {
+  display: block;
+}

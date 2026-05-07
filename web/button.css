@@ -1,0 +1,30 @@
+/* 카테고리 공통 */
+.category {
+  display: inline-block;
+  padding: 20px;
+  background: #f4f4f4;
+
+  color: black;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* hover 효과 */
+.category:hover {
+  background: #ddd;
+}
+
+/* 🔥 드롭다운 메뉴 안에 있는 링크 */
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #eee;
+}

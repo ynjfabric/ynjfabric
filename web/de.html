@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>데님</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* 헤더 */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: #222;
+  color: white;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+/* 히어로 */
+.hero {
+  height: 300px;
+  background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* 🔥 카테고리 바 */
+.categories {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: #fafafa;
+}
+
+/* 🔥 드롭다운 */
+.dropdown-category {
+  position: relative;
+  display: inline-block;
+}
+
+/* 🔥 버튼 (클릭 가능하게 a 태그) */
+.category {
+  display: inline-block;
+  padding: 15px 25px;
+  background: #f4f4f4;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.category:hover {
+  background: #ddd;
+}
+
+/* 🔥 메뉴 */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: white;
+  border: 1px solid #ccc;
+  min-width: 150px;
+
+  z-index: 999;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #eee;
+}
+
+/* 🔥 hover 시 열림 */
+.dropdown-category:hover .dropdown-menu {
+  display: block;
+}
+
+/* 상품 그리드 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* 로딩 */
+#loading {
+  text-align: center;
+  padding: 20px;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Y&J Fabric</h2>
+  <nav>
+    <a href="main.html">홈</a>
+    <a href="order.html">문의</a>
+  </nav>
+</header>
+
+<div class="hero">데님</div>
+
+<!-- 🔥 카테고리 -->
+<section class="categories">
+  <div class="dropdown-category">
+
+    <!-- 클릭 + 드롭다운 동시에 -->
+    <a href="co.html" class="category">원단 ▾</a>
+
+    <div class="dropdown-menu">
+      <a href="co.html">면</a>
+      <a href="li.html">린넨</a>
+      <a href="de.html">데님</a>
+      <a href="ra.html">레이온</a>
+      <a href="da.html">다이마루</a>
+    </div>
+    
+
+  </div>
+    <a href="order.html" class="category">주문 제작</a>
+</section>
+
+<h2 style="padding:20px;">데님</h2>
+
+<!-- 상품 -->
+<div class="grid" id="grid"></div>
+
+<div id="loading">로딩중...</div>
+
+<script>
+const grid = document.getElementById("grid");
+const loading = document.getElementById("loading");
+
+let page = 0;
+const pageSize = 10;
+
+const products = [];
+
+for (let i = 1; i <= 40; i++) {
+  products.push({
+    img: `images/fabric${(i % 5) + 1}.jpg`,
+    name: "상품" + i
+  });
+}
+
+function loadItems() {
+  loading.style.display = "block";
+
+  setTimeout(() => {
+    const start = page * pageSize;
+    const end = start + pageSize;
+
+    const items = products.slice(start, end);
+
+    items.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <img src="${p.img}">
+        <p>${p.name}</p>
+      `;
+      grid.appendChild(div);
+    });
+
+    page++;
+    loading.style.display = "none";
+  }, 500);
+}
+
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+    if (page * pageSize < products.length) {
+      loadItems();
+    }
+  }
+});
+
+loadItems();
+</script>
+
+</body>
+</html>
