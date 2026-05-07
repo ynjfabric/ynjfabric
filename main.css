@@ -299,6 +299,7 @@ nav a:hover {
     gap: 12px;
 
     padding: 18px;
+
     text-align: center;
   }
 
@@ -348,14 +349,6 @@ nav a:hover {
     padding: 15px;
   }
 
-  .dropdown-menu {
-    position: static;
-
-    width: 210px;
-
-    margin-top: 5px;
-  }
-
   /* 상품 */
   .products {
     padding: 45px 15px;
@@ -381,7 +374,10 @@ nav a:hover {
     font-size: 15px;
   }
 
-  /* 푸터 */
+  /* =========================
+     모바일 푸터
+  ========================= */
+
   .footer {
     text-align: center;
 
@@ -389,19 +385,44 @@ nav a:hover {
   }
 
   .footer-container {
-    gap: 35px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    align-items: start;
   }
 
-  .footer-bottom {
-    gap: 25px;
+  /* 쇼핑몰 기본정보 */
+  .footer-col:first-child {
+
+    grid-column: 1 / 3;
+
+    text-align: center;
+  }
+
+  /* 고객센터 */
+  .footer-col:nth-child(2) {
+    text-align: center;
+  }
+
+  /* 결제정보 */
+  .footer-col:nth-child(3) {
+    text-align: center;
   }
 
   .footer-col h3 {
-    font-size: 18px;
+    font-size: 22px;
+
+    margin-bottom: 18px;
   }
 
   .footer-col p {
-    font-size: 14px;
+    font-size: 15px;
+
+    line-height: 1.8;
   }
 
 }
