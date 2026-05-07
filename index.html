@@ -26,6 +26,7 @@
 
   <!-- 메인 배너 -->
   <section class="hero">
+
     <div class="hero-overlay">
 
       <h1>
@@ -37,27 +38,33 @@
       </p>
 
     </div>
+
   </section>
 
   <!-- 카테고리 -->
   <section class="categories">
 
+    <!-- 원단 -->
     <div class="dropdown-category">
 
-      <div class="category">
+      <!-- 🔥 div → button 변경 -->
+      <button class="category dropdown-btn" type="button">
         원단 ▾
-      </div>
+      </button>
 
       <div class="dropdown-menu">
+
         <a href="co.html">면</a>
         <a href="li.html">린넨</a>
         <a href="de.html">데님</a>
         <a href="ra.html">레이온</a>
         <a href="da.html">다이마루</a>
+
       </div>
 
     </div>
 
+    <!-- 주문제작 -->
     <a href="order.html" class="category">
       주문 제작
     </a>
@@ -72,43 +79,53 @@
     <div class="product-grid">
 
       <div class="fabric-sample">
+
         <div class="sample-box">
           샘플
         </div>
 
         <p>샘플A</p>
+
       </div>
 
       <div class="fabric-sample">
+
         <div class="sample-box">
           샘플
         </div>
 
         <p>샘플B</p>
+
       </div>
 
       <div class="fabric-sample">
+
         <div class="sample-box">
           샘플
         </div>
 
         <p>샘플C</p>
+
       </div>
 
       <div class="fabric-sample">
+
         <div class="sample-box">
           샘플
         </div>
 
         <p>샘플D</p>
+
       </div>
 
       <div class="fabric-sample">
+
         <div class="sample-box">
           샘플
         </div>
 
         <p>샘플E</p>
+
       </div>
 
     </div>
@@ -116,48 +133,75 @@
   </section>
 
   <!-- 푸터 -->
-  <!-- footer -->
+  <footer class="footer">
 
-<footer class="footer">
+    <div class="footer-container">
 
-  <div class="footer-container">
+      <!-- 쇼핑몰 기본정보 -->
+      <div class="footer-col">
 
-    <!-- 쇼핑몰 기본정보 -->
-    <div class="footer-col footer-main">
-      <h3>쇼핑몰 기본정보</h3>
+        <h3>쇼핑몰 기본정보</h3>
 
-      <p>상호명 : Y&J Fabric</p>
-      <p>대표자명 : 박찬화</p>
-      <p>사업자 등록번호 : 603-16-14153</p>
-      <p>통신판매업 신고 완료</p>
-    </div>
+        <p>상호명 : Y&J Fabric</p>
+        <p>대표자명 : 박찬화</p>
+        <p>사업자 등록번호 : 603-16-14153</p>
+        <p>통신판매업 신고 완료</p>
 
-    <!-- 아래 가로 정렬 -->
-    <div class="footer-bottom">
+      </div>
 
       <!-- 고객센터 -->
       <div class="footer-col">
+
         <h3>고객센터 정보</h3>
 
         <p>상담/주문 이메일</p>
         <p>chan104201@naver.com</p>
         <p>ynjfabric@gmail.com</p>
+
       </div>
 
       <!-- 결제 -->
       <div class="footer-col">
+
         <h3>결제 정보</h3>
 
         <p>무통장 계좌정보</p>
         <p>은행 0000-000-000000</p>
         <p>예금주 : 박찬화</p>
+
       </div>
 
     </div>
 
-  </div>
+  </footer>
 
-</footer>
+  <!-- 모바일 드롭다운 대응 -->
+  <script>
+
+    const dropdownBtn =
+      document.querySelector(".dropdown-btn");
+
+    const dropdownMenu =
+      document.querySelector(".dropdown-menu");
+
+    dropdownBtn.addEventListener("click", () => {
+
+      dropdownMenu.classList.toggle("show");
+
+    });
+
+    // 바깥 클릭 시 닫힘
+    window.addEventListener("click", (e) => {
+
+      if (
+        !e.target.closest(".dropdown-category")
+      ) {
+        dropdownMenu.classList.remove("show");
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>

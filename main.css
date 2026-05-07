@@ -12,6 +12,7 @@ body {
   font-family: Arial, sans-serif;
   color: #333;
   background: #fff;
+  overflow-x: hidden;
 }
 
 
@@ -160,9 +161,6 @@ nav a:hover {
   background: #eee;
 }
 
-.dropdown-category:hover .dropdown-menu {
-  display: block;
-}
 
 
 /* =========================
@@ -234,44 +232,56 @@ nav a:hover {
 
 .footer {
   background: #eee;
-
   padding: 60px 20px;
 }
 
-/* 전체 영역 */
+/* PC */
 .footer-container {
   max-width: 1200px;
 
   margin: auto;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
 
-  gap: 40px;
+  gap: 100px;
 }
 
-/* 각 칸 */
-.footer-col {
+/* 쇼핑몰 기본정보 */
+.footer-main {
   flex: 1;
-
   text-align: center;
 }
 
-/* 제목 */
+/* 아래 2개 */
+.footer-bottom {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+
+  gap: 80px;
+}
+
+.footer-col {
+  text-align: center;
+}
+
 .footer-col h3 {
   margin-bottom: 18px;
 
-  font-size: 20px;
+  font-size: 22px;
   color: black;
 }
 
-/* 내용 */
 .footer-col p {
   margin: 8px 0;
 
   color: #333;
-  line-height: 1.7;
+  line-height: 1.8;
+
+  font-size: 16px;
 }
 
 
@@ -368,38 +378,51 @@ nav a:hover {
   ========================= */
 
   .footer {
-    text-align: center;
-
     padding: 45px 20px;
+    text-align: center;
   }
 
   .footer-container {
 
-    display: grid;
+    display: flex !important;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 45px;
+  }
+
+  /* 쇼핑몰 기본정보 */
+  .footer-main {
+    width: 100%;
+  }
+
+  /* 고객센터 + 결제 */
+  .footer-bottom {
+
+    width: 100%;
+
+    display: grid !important;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 35px;
+    gap: 20px;
 
     align-items: start;
   }
 
-  /* 쇼핑몰 기본정보 */
-  .footer-col:first-child {
-
-    grid-column: 1 / 3;
+  .footer-col {
+    text-align: center;
   }
 
   .footer-col h3 {
-    font-size: 21px;
-
+    font-size: 20px;
     margin-bottom: 15px;
   }
 
   .footer-col p {
-    font-size: 15px;
-
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.7;
   }
 
 }
