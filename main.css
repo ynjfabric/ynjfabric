@@ -160,7 +160,14 @@ nav a:hover {
 .dropdown-menu a:hover {
   background: #eee;
 }
+.dropdown-category:hover .dropdown-menu {
+  display: block;
+}
 
+/* 모바일 클릭 */
+.dropdown-menu.show {
+  display: block;
+}
 
 
 /* =========================
