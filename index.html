@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Y&J Fabric</title>
+
   <link rel="stylesheet" href="button.css">
   <link rel="stylesheet" href="main.css">
 
@@ -11,108 +12,207 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #fff;
+      color: #333;
     }
 
-    /* 헤더 */
+    /* =========================
+       헤더
+    ========================= */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       padding: 15px 40px;
+
       background: #222;
       color: white;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
     }
 
     nav a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
+      transition: 0.3s;
     }
 
-    /* 메인 배너 */
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    /* =========================
+       메인 배너
+    ========================= */
     .hero {
-      height: 400px;
-      background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b') center/cover;
+      height: 450px;
+
+      background:
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b')
+        center/cover;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
+      text-align: center;
+
       color: white;
-      font-size: 40px;
+      font-size: 42px;
       font-weight: bold;
-    }
 
-    /* 카테고리 */
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px;
-    }
-
-    /* 🔥 드롭다운 전체 */
-    .dropdown-category {
-      position: relative;
-      display: inline-block;
-    }
-
-    .category {
       padding: 20px;
-      background: #f4f4f4;
-      cursor: pointer;
     }
 
-    .category:hover {
-      background: #ddd;
-    }
-
-    /* 🔥 드롭다운 메뉴 */
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-
-      background: white;
-      border: 1px solid #ccc;
-      min-width: 150px;
-
-      z-index: 999;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 10px;
-      color: black;
-      text-decoration: none;
-    }
-
-    .dropdown-menu a:hover {
-      background: #eee;
-    }
-
-    /* 🔥 핵심 */
-    .dropdown-category:hover .dropdown-menu {
-      display: block;
-    }
-
-    /* 상품 */
+    /* =========================
+       상품
+    ========================= */
     .products {
-      padding: 40px;
+      padding: 60px 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
     }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
     }
 
-    /* 푸터 */
-    footer {
-      background: #222;
-      color: white;
+    .fabric-sample {
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+    }
+
+    .sample-box {
+      width: 100%;
+      max-width: 250px;
+      height: 250px;
+
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid #ccc;
+      border-radius: 10px;
+
+      background: #fafafa;
+
+      transition: 0.3s;
+    }
+
+    .sample-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .fabric-sample p {
+      margin-top: 15px;
+      font-size: 17px;
+    }
+
+    /* =========================
+       푸터
+    ========================= */
+    .footer {
+      background: #eee;
+      padding: 50px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+    }
+
+    .footer-col:first-child {
+      flex: 1.5;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 15px;
+      color: black;
+      font-size: 18px;
+    }
+
+    .footer-col p {
+      margin: 7px 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* =========================
+       모바일 반응형
+    ========================= */
+    @media (max-width: 768px) {
+
+      /* 헤더 */
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      /* 배너 */
+      .hero {
+        height: 280px;
+        font-size: 28px;
+      }
+
+      /* 상품 */
+      .products {
+        padding: 40px 15px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sample-box {
+        height: 220px;
+      }
+
+      /* 푸터 */
+      .footer {
+        text-align: center;
+      }
+
+      .footer-container {
+        flex-direction: column;
+      }
+
     }
   </style>
 </head>
@@ -122,22 +222,27 @@
   <!-- 헤더 -->
   <header>
     <h2>Y&J Fabric</h2>
+
     <nav>
       <a href="index.html">홈</a>
       <a href="order.html">문의</a>
     </nav>
   </header>
 
-  <!-- 배너 -->
+  <!-- 메인 배너 -->
   <div class="hero">
-    좋은 품질 착한 가격 Y&J Fabric
+    좋은 품질 착한 가격<br>
+    Y&J Fabric
   </div>
 
-  <!-- 🔥 카테고리 -->
+  <!-- 카테고리 -->
   <section class="categories">
 
     <div class="dropdown-category">
-      <div class="category">원단 ▾</div>
+
+      <div class="category">
+        원단 ▾
+      </div>
 
       <div class="dropdown-menu">
         <a href="co.html">면</a>
@@ -146,81 +251,94 @@
         <a href="ra.html">레이온</a>
         <a href="da.html">다이마루</a>
       </div>
+
     </div>
-  <a href="order.html" class="category">주문 제작</a>
+
+    <a href="order.html" class="category">
+      주문 제작
+    </a>
+
   </section>
 
   <!-- 상품 -->
   <section class="products">
+
     <h2>메인 상품</h2>
 
     <div class="product-grid">
 
-  <div class="fabric-sample">
-    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
-      샘플
-    </div>
-    <p>샘플A</p>
-  </div>
+      <div class="fabric-sample">
+        <div class="sample-box">
+          샘플
+        </div>
+        <p>샘플A</p>
+      </div>
 
-  <div class="fabric-sample">
-    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
-      샘플
-    </div>
-    <p>샘플B</p>
-  </div>
+      <div class="fabric-sample">
+        <div class="sample-box">
+          샘플
+        </div>
+        <p>샘플B</p>
+      </div>
 
-  <div class="fabric-sample">
-    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
-      샘플
-    </div>
-    <p>샘플C</p>
-  </div>
+      <div class="fabric-sample">
+        <div class="sample-box">
+          샘플
+        </div>
+        <p>샘플C</p>
+      </div>
 
-  <div class="fabric-sample">
-    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
-      샘플
-    </div>
-    <p>샘플D</p>
-  </div>
+      <div class="fabric-sample">
+        <div class="sample-box">
+          샘플
+        </div>
+        <p>샘플D</p>
+      </div>
 
-  <div class="fabric-sample">
-    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
-      샘플
-    </div>
-    <p>샘플E</p>
-  </div>
+      <div class="fabric-sample">
+        <div class="sample-box">
+          샘플
+        </div>
+        <p>샘플E</p>
+      </div>
 
-</div>
+    </div>
+
   </section>
 
   <!-- 푸터 -->
   <footer class="footer">
-  <div class="footer-container">
 
-    <div class="footer-col">
-      <h3>쇼핑몰 기본정보</h3>
-      <p>상호명 :  Y&J Fabric</p>
-      <p>대표자명 : 박찬화</p>
-      <p>사업자 등록번호 603 16 14153</p>
-      <p>통신판매업 신고</p>
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <h3>쇼핑몰 기본정보</h3>
+
+        <p>상호명 : Y&J Fabric</p>
+        <p>대표자명 : 박찬화</p>
+        <p>사업자 등록번호 : 603-16-14153</p>
+        <p>통신판매업 신고 완료 </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>고객센터 정보</h3>
+
+        <p>상담/주문 이메일</p>
+        <p>chan104201@naver.com</p>
+        <p>ynjfabric@gmail.com</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>결제 정보</h3>
+
+        <p>무통장 계좌정보</p>
+        <p>은행 0000-000-000000</p>
+        <p>예금주 : 박찬화</p>
+      </div>
+
     </div>
 
-    <div class="footer-col">
-      <h3>고객센터 정보</h3>
-      <p>상담/주문 이메일 </p>
-      <p>chan104201@naver.com</p>
-      <p>ynjfabric@gmail.com</p>
-    </div>
-
-    <div class="footer-col">
-      <h3>결제 정보</h3>
-      <p>무통장 계좌정보</p>
-      <p>은행 0000-000-000000 예금주 박찬화</p>
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
