@@ -1,220 +1,15 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Y&J Fabric</title>
 
-  <link rel="stylesheet" href="button.css">
   <link rel="stylesheet" href="main.css">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #333;
-    }
-
-    /* =========================
-       헤더
-    ========================= */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      padding: 15px 40px;
-
-      background: #222;
-      color: white;
-    }
-
-    header h2 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      opacity: 0.7;
-    }
-
-    /* =========================
-       메인 배너
-    ========================= */
-    .hero {
-      height: 450px;
-
-      background:
-        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-        url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b')
-        center/cover;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      color: white;
-      font-size: 42px;
-      font-weight: bold;
-
-      padding: 20px;
-    }
-
-    /* =========================
-       상품
-    ========================= */
-    .products {
-      padding: 60px 20px;
-      max-width: 1300px;
-      margin: auto;
-    }
-
-    .products h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 32px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-    }
-
-    .fabric-sample {
-      text-align: center;
-    }
-
-    .sample-box {
-      width: 100%;
-      max-width: 250px;
-      height: 250px;
-
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid #ccc;
-      border-radius: 10px;
-
-      background: #fafafa;
-
-      transition: 0.3s;
-    }
-
-    .sample-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .fabric-sample p {
-      margin-top: 15px;
-      font-size: 17px;
-    }
-
-    /* =========================
-       푸터
-    ========================= */
-    .footer {
-      background: #eee;
-      padding: 50px 20px;
-      margin-top: 60px;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      gap: 40px;
-    }
-
-    .footer-col {
-      flex: 1;
-    }
-
-    .footer-col:first-child {
-      flex: 1.5;
-    }
-
-    .footer-col h3 {
-      margin-bottom: 15px;
-      color: black;
-      font-size: 18px;
-    }
-
-    .footer-col p {
-      margin: 7px 0;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    /* =========================
-       모바일 반응형
-    ========================= */
-    @media (max-width: 768px) {
-
-      /* 헤더 */
-      header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-        text-align: center;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      /* 배너 */
-      .hero {
-        height: 280px;
-        font-size: 28px;
-      }
-
-      /* 상품 */
-      .products {
-        padding: 40px 15px;
-      }
-
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .sample-box {
-        height: 220px;
-      }
-
-      /* 푸터 */
-      .footer {
-        text-align: center;
-      }
-
-      .footer-container {
-        flex-direction: column;
-      }
-
-    }
-  </style>
+  <link rel="stylesheet" href="button.css">
 </head>
 
 <body>
@@ -230,10 +25,19 @@
   </header>
 
   <!-- 메인 배너 -->
-  <div class="hero">
-    좋은 품질 착한 가격<br>
-    Y&J Fabric
-  </div>
+  <section class="hero">
+    <div class="hero-overlay">
+
+      <h1>
+        좋은 품질 착한 가격
+      </h1>
+
+      <p>
+        Y&J Fabric
+      </p>
+
+    </div>
+  </section>
 
   <!-- 카테고리 -->
   <section class="categories">
@@ -271,6 +75,7 @@
         <div class="sample-box">
           샘플
         </div>
+
         <p>샘플A</p>
       </div>
 
@@ -278,6 +83,7 @@
         <div class="sample-box">
           샘플
         </div>
+
         <p>샘플B</p>
       </div>
 
@@ -285,6 +91,7 @@
         <div class="sample-box">
           샘플
         </div>
+
         <p>샘플C</p>
       </div>
 
@@ -292,6 +99,7 @@
         <div class="sample-box">
           샘플
         </div>
+
         <p>샘플D</p>
       </div>
 
@@ -299,6 +107,7 @@
         <div class="sample-box">
           샘플
         </div>
+
         <p>샘플E</p>
       </div>
 
@@ -317,7 +126,7 @@
         <p>상호명 : Y&J Fabric</p>
         <p>대표자명 : 박찬화</p>
         <p>사업자 등록번호 : 603-16-14153</p>
-        <p>통신판매업 신고 완료 </p>
+        <p>통신판매업 신고 준비중</p>
       </div>
 
       <div class="footer-col">
