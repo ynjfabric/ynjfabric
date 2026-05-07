@@ -366,7 +366,8 @@ nav a:hover {
     width: 210px;
     height: 56px;
 
-    font-size: 18px;
+    font-size: 20px;
+  font-weight: 600;
   }
 
   /* 모바일 드롭다운 */
@@ -430,16 +431,19 @@ nav a:hover {
   /* 고객센터 + 결제 */
   .footer-bottom {
 
-    width: 100%;
+  width: 100%;
 
-    display: grid;
+  display: flex;
 
-    grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: flex-start;
 
-    gap: 20px;
-
-    align-items: start;
-  }
+  gap: 25px;
+}
+.footer-bottom .footer-col {
+  flex: 1;
+  max-width: 160px;
+}
 
   .footer-col {
     text-align: center;
