@@ -238,39 +238,27 @@ nav a:hover {
   padding: 60px 20px;
 }
 
-/* 전체 */
+/* 전체 영역 */
 .footer-container {
   max-width: 1200px;
 
   margin: auto;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 45px;
-}
-
-/* 쇼핑몰 기본정보 */
-.footer-main {
-  text-align: center;
-}
-
-/* 아래 영역 */
-.footer-bottom {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
 
-  gap: 80px;
+  gap: 40px;
 }
 
+/* 각 칸 */
 .footer-col {
+  flex: 1;
+
   text-align: center;
 }
 
+/* 제목 */
 .footer-col h3 {
   margin-bottom: 18px;
 
@@ -278,6 +266,7 @@ nav a:hover {
   color: black;
 }
 
+/* 내용 */
 .footer-col p {
   margin: 8px 0;
 
@@ -390,7 +379,7 @@ nav a:hover {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 30px;
+    gap: 35px;
 
     align-items: start;
   }
@@ -399,24 +388,12 @@ nav a:hover {
   .footer-col:first-child {
 
     grid-column: 1 / 3;
-
-    text-align: center;
-  }
-
-  /* 고객센터 */
-  .footer-col:nth-child(2) {
-    text-align: center;
-  }
-
-  /* 결제정보 */
-  .footer-col:nth-child(3) {
-    text-align: center;
   }
 
   .footer-col h3 {
-    font-size: 22px;
+    font-size: 21px;
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
   }
 
   .footer-col p {
