@@ -102,10 +102,16 @@ nav a:hover {
   position: relative;
 }
 
+/* 원단 / 주문제작 버튼 */
 .category {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-  padding: 18px 28px;
+  min-width: 210px;
+  height: 60px;
+
+  padding: 0 28px;
 
   background: #f4f4f4;
   color: black;
@@ -116,6 +122,9 @@ nav a:hover {
   border-radius: 8px;
 
   transition: 0.3s;
+
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .category:hover {
@@ -131,7 +140,7 @@ nav a:hover {
   display: none;
 
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 0;
 
   background: white;
@@ -139,11 +148,13 @@ nav a:hover {
   border: 1px solid #ddd;
   border-radius: 8px;
 
-  min-width: 180px;
+  min-width: 210px;
 
   overflow: hidden;
 
-  z-index: 999;
+  z-index: 9999;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .dropdown-menu a {
@@ -155,11 +166,15 @@ nav a:hover {
   text-decoration: none;
 
   transition: 0.3s;
+
+  font-size: 16px;
 }
 
 .dropdown-menu a:hover {
   background: #eee;
 }
+
+/* PC hover */
 .dropdown-category:hover .dropdown-menu {
   display: block;
 }
@@ -261,7 +276,7 @@ nav a:hover {
   text-align: center;
 }
 
-/* 아래 2개 */
+/* 고객센터 + 결제 */
 .footer-bottom {
   flex: 1;
 
@@ -349,10 +364,18 @@ nav a:hover {
 
   .category {
     width: 210px;
+    height: 56px;
 
-    text-align: center;
+    font-size: 18px;
+  }
 
-    padding: 15px;
+  /* 모바일 드롭다운 */
+  .dropdown-menu {
+    position: static;
+
+    width: 210px;
+
+    margin-top: 8px;
   }
 
   /* 상품 */
@@ -391,7 +414,7 @@ nav a:hover {
 
   .footer-container {
 
-    display: flex !important;
+    display: flex;
     flex-direction: column;
 
     align-items: center;
@@ -409,7 +432,7 @@ nav a:hover {
 
     width: 100%;
 
-    display: grid !important;
+    display: grid;
 
     grid-template-columns: 1fr 1fr;
 
@@ -423,13 +446,13 @@ nav a:hover {
   }
 
   .footer-col h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 12px;
   }
 
   .footer-col p {
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
 }
