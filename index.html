@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y&J Fabric</title>
+  <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="main.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* 헤더 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #222;
+      color: white;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    /* 메인 배너 */
+    .hero {
+      height: 400px;
+      background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    /* 카테고리 */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    /* 🔥 드롭다운 전체 */
+    .dropdown-category {
+      position: relative;
+      display: inline-block;
+    }
+
+    .category {
+      padding: 20px;
+      background: #f4f4f4;
+      cursor: pointer;
+    }
+
+    .category:hover {
+      background: #ddd;
+    }
+
+    /* 🔥 드롭다운 메뉴 */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      background: white;
+      border: 1px solid #ccc;
+      min-width: 150px;
+
+      z-index: 999;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      color: black;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #eee;
+    }
+
+    /* 🔥 핵심 */
+    .dropdown-category:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* 상품 */
+    .products {
+      padding: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    /* 푸터 */
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <h2>Y&J Fabric</h2>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="order.html">문의</a>
+    </nav>
+  </header>
+
+  <!-- 배너 -->
+  <div class="hero">
+    좋은 품질 착한 가격 Y&J Fabric
+  </div>
+
+  <!-- 🔥 카테고리 -->
+  <section class="categories">
+
+    <div class="dropdown-category">
+      <div class="category">원단 ▾</div>
+
+      <div class="dropdown-menu">
+        <a href="co.html">면</a>
+        <a href="li.html">린넨</a>
+        <a href="de.html">데님</a>
+        <a href="ra.html">레이온</a>
+        <a href="da.html">다이마루</a>
+      </div>
+    </div>
+  <a href="order.html" class="category">주문 제작</a>
+  </section>
+
+  <!-- 상품 -->
+  <section class="products">
+    <h2>메인 상품</h2>
+
+    <div class="product-grid">
+
+  <div class="fabric-sample">
+    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
+      샘플
+    </div>
+    <p>샘플A</p>
+  </div>
+
+  <div class="fabric-sample">
+    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
+      샘플
+    </div>
+    <p>샘플B</p>
+  </div>
+
+  <div class="fabric-sample">
+    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
+      샘플
+    </div>
+    <p>샘플C</p>
+  </div>
+
+  <div class="fabric-sample">
+    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
+      샘플
+    </div>
+    <p>샘플D</p>
+  </div>
+
+  <div class="fabric-sample">
+    <div style="width:250px; height:250px; display:flex; align-items:center; justify-content:center; border:1px solid #ccc; font-size:10px;">
+      샘플
+    </div>
+    <p>샘플E</p>
+  </div>
+
+</div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h3>쇼핑몰 기본정보</h3>
+      <p>상호명 :  Y&J Fabric</p>
+      <p>대표자명 : 박찬화</p>
+      <p>사업자 등록번호 603 16 14153</p>
+      <p>통신판매업 신고</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>고객센터 정보</h3>
+      <p>상담/주문 이메일 </p>
+      <p>chan104201@naver.com</p>
+      <p>ynjfabric@gmail.com</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>결제 정보</h3>
+      <p>무통장 계좌정보</p>
+      <p>은행 0000-000-000000 예금주 박찬화</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
