@@ -3,128 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>주문 제작 문의 | Y&J Fabric</title>
+
+  <title>상품 문의 | Y&J Fabric</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      color: #333;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    /* 헤더 */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: #222;
-      color: white;
+    body{
+      font-family:Arial, sans-serif;
+      background:#f8f8f8;
+      color:#333;
+      line-height:1.6;
     }
 
-    header a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
+    /* =========================
+       헤더
+    ========================= */
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:18px 40px;
+
+      background:#222;
+      color:white;
     }
 
-    /* 메인 */
-    .order-hero {
-      background: #444;
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
+    header h2{
+      font-size:28px;
     }
 
-    .order-hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
+    nav{
+      display:flex;
+      gap:20px;
     }
 
-    .order-hero p {
-      font-size: 18px;
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-size:15px;
     }
 
-    /* 연락 방법 */
-    .contact-section {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 20px;
+    /* =========================
+       메인
+    ========================= */
+
+    .order-hero{
+      background:#444;
+      color:white;
+      text-align:center;
+
+      padding:90px 20px;
     }
 
-    .contact-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 32px;
+    .order-hero h1{
+      font-size:44px;
+      margin-bottom:15px;
     }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+    .order-hero p{
+      font-size:18px;
+      opacity:0.9;
     }
 
-    .contact-card {
-      background: white;
-      border-radius: 12px;
-      padding: 35px 25px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: 0.3s;
+    /* =========================
+       문의 카드
+    ========================= */
+
+    .contact-section{
+      max-width:1100px;
+      margin:70px auto;
+      padding:0 20px;
     }
 
-    .contact-card:hover {
-      transform: translateY(-5px);
+    .contact-title{
+      text-align:center;
+      font-size:34px;
+      margin-bottom:45px;
     }
 
-    .contact-card h2 {
-      margin-bottom: 15px;
-      font-size: 28px;
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:25px;
     }
 
-    .contact-card p {
-      margin-bottom: 25px;
-      line-height: 1.7;
+    .contact-card{
+      background:white;
+
+      border-radius:14px;
+
+      padding:35px 25px;
+
+      text-align:center;
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+      transition:0.3s;
     }
 
-    .contact-btn {
-      display: inline-block;
-      padding: 12px 24px;
-      background: #222;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: 0.3s;
+    .contact-card:hover{
+      transform:translateY(-5px);
     }
 
-    .contact-btn:hover {
-      background: #555;
+    .contact-card h2{
+      margin-bottom:15px;
+      font-size:28px;
     }
 
-    /* 안내 */
-    .guide {
-      max-width: 900px;
-      margin: 50px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      line-height: 1.8;
+    .contact-card p{
+      margin-bottom:25px;
+      color:#555;
     }
 
-    .guide h3 {
-      margin-bottom: 20px;
+    .contact-btn{
+      display:inline-block;
+
+      padding:12px 24px;
+
+      background:#222;
+      color:white;
+
+      text-decoration:none;
+
+      border-radius:8px;
+
+      transition:0.3s;
     }
 
-    /* 푸터 */
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 60px;
+    .contact-btn:hover{
+      background:#555;
     }
+
+    /* =========================
+       주문 예시 공통
+    ========================= */
+
+    .guide{
+      max-width:950px;
+
+      margin:50px auto;
+
+      background:white;
+
+      padding:35px;
+
+      border-radius:14px;
+
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .guide h3{
+      margin-bottom:20px;
+      font-size:28px;
+    }
+
+    .guide p{
+      margin-bottom:20px;
+    }
+
+    .guide ul{
+      padding-left:20px;
+      margin-bottom:25px;
+    }
+
+    .guide li{
+      margin-bottom:10px;
+    }
+
+    /* =========================
+       예시 박스
+    ========================= */
+
+    .example-box{
+      background:#f3f3f3;
+
+      border-radius:12px;
+
+      padding:25px;
+
+      margin-top:20px;
+
+      border:1px solid #e5e5e5;
+    }
+
+    .example-title{
+      font-size:20px;
+      font-weight:bold;
+
+      margin-bottom:15px;
+    }
+
+    .example-text{
+      white-space:pre-line;
+      line-height:1.9;
+      color:#444;
+    }
+
+    /* =========================
+       푸터
+    ========================= */
+
+    footer{
+      background:#222;
+      color:white;
+
+      text-align:center;
+
+      padding:25px 20px;
+
+      margin-top:70px;
+    }
+
+    /* =========================
+       모바일
+    ========================= */
+
+    @media (max-width:768px){
+
+      header{
+        flex-direction:column;
+        gap:10px;
+
+        padding:18px;
+      }
+
+      .order-hero{
+        padding:70px 20px;
+      }
+
+      .order-hero h1{
+        font-size:30px;
+      }
+
+      .order-hero p{
+        font-size:15px;
+      }
+
+      .contact-title{
+        font-size:26px;
+      }
+
+      .guide{
+        padding:25px 20px;
+      }
+
+      .guide h3{
+        font-size:24px;
+      }
+
+      .example-box{
+        padding:20px;
+      }
+
+      .example-text{
+        font-size:14px;
+      }
+
+    }
+
   </style>
 </head>
 
@@ -132,91 +276,177 @@
 
   <!-- 헤더 -->
   <header>
+
     <h2>Y&J Fabric</h2>
 
     <nav>
       <a href="index.html">홈</a>
       <a href="order.html">문의</a>
     </nav>
+
   </header>
 
   <!-- 메인 -->
   <section class="order-hero">
-    <h1>주문 제작 문의</h1>
+
+    <h1>상품 문의</h1>
+
     <p>
-      원하시는 원단 및 의류 제작 문의는 아래 방법으로 가능합니다.
+      원하시는 상품 문의 및 주문은 아래 방법으로 가능합니다.
     </p>
+
   </section>
 
-  <!-- 연락 방법 -->
+  <!-- 문의 방법 -->
   <section class="contact-section">
 
-    <h2 class="contact-title">문의 방법</h2>
+    <h2 class="contact-title">
+      문의 방법
+    </h2>
 
     <div class="contact-grid">
 
       <!-- BAND -->
       <div class="contact-card">
+
         <h2>📱 BAND</h2>
 
         <p>
-          BAND를 통해 제작 문의 및 상담이 가능합니다.
+          BAND를 통해 문의 및 상담이 가능합니다.
         </p>
 
-        <a href="https://band.us/n/acacb743gfZ9Z/" target="_blank" class="contact-btn">
+        <a
+          href="https://band.us/n/acacb743gfZ9Z/"
+          target="_blank"
+          class="contact-btn"
+        >
           BAND 문의하기
         </a>
+
       </div>
 
       <!-- 카카오톡 -->
       <div class="contact-card">
-        <h2>💬 카카오톡 오픈채팅</h2>
+
+        <h2>💬 카카오톡</h2>
 
         <p>
           카카오톡 오픈채팅으로 빠르게 상담 가능합니다.
         </p>
 
-        <a href="https://open.kakao.com/o/smrFUTti/" target="_blank" class="contact-btn">
+        <a
+          href="https://open.kakao.com/o/smrFUTti/"
+          target="_blank"
+          class="contact-btn"
+        >
           오픈채팅 문의하기
         </a>
+
       </div>
 
-      <!-- 메일 -->
+      <!-- 이메일 -->
       <div class="contact-card">
+
         <h2>✉️ 이메일</h2>
 
         <p>
-          구글 이메일을 통해 주문 제작 문의를 보내주세요.
+          이메일을 통해 문의를 보내주세요.
         </p>
 
-         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chan104201@naver.com"
-     target="_blank"
-     class="contact-btn">
-     이메일 문의하기
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=chan104201@naver.com"
+          target="_blank"
+          class="contact-btn"
+        >
+          이메일 문의하기
         </a>
+
       </div>
 
     </div>
 
   </section>
 
-  <!-- 안내 -->
+  <!-- 원단 주문 예시 -->
   <section class="guide">
 
-    <h3>주문 제작 및 원단 주문 안내</h3>
+    <h3>원단 주문 예시</h3>
 
     <p>
-      주문 제작 문의 시 아래 내용을 함께 보내주시면 더욱 빠른 상담이 가능합니다.
+      아래 형식으로 보내주시면 빠르게 상담 가능합니다.
     </p>
 
     <ul>
-      <li>원하는 원단 종류</li>
-      <li>색상 및 디자인</li>
-      <li>제작 수량</li>
-      <li>희망 사이즈</li>
-      <li>참고 이미지</li>
-      <li>희망 납기일</li>
+      <li>원단 종류</li>
+      <li>색상</li>
+      <li>주문 수량 (몇 마)</li>
+      <li>배송 주소</li>
+      <li>구매자 성함</li>
+      <li>연락처</li>
     </ul>
+
+    <div class="example-box">
+
+      <div class="example-title">
+        원단 주문 예시
+      </div>
+
+      <div class="example-text">
+원단 종류 : 린넨
+
+색상 : 블랙
+
+수량 : 5마
+
+구매자 성함 : 홍길동
+
+연락처 : 010-1234-5678
+
+배송 주소 :
+서울특별시 ○○구 ○○로 123
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 완성품 주문 예시 -->
+  <section class="guide">
+
+    <h3>완성품 주문 예시</h3>
+
+    <p>
+      메인 상품 완성품 주문 시 아래 내용을 함께 보내주세요.
+    </p>
+
+    <ul>
+      <li>상품 이름</li>
+      <li>수량</li>
+      <li>구매자 성함</li>
+      <li>연락처</li>
+      <li>배송 주소</li>
+    </ul>
+
+    <div class="example-box">
+
+      <div class="example-title">
+        완성품 주문 예시
+      </div>
+
+      <div class="example-text">
+상품 이름 : 샘플A
+
+수량 : 2개
+
+구매자 성함 : 홍길동
+
+연락처 : 010-1234-5678
+
+배송 주소 :
+부산광역시 ○○구 ○○동 123-1
+      </div>
+
+    </div>
 
   </section>
 
