@@ -118,6 +118,9 @@ nav a {
 
 .dropdown-category {
   position: relative;
+
+  /* 🔥 hover 유지 영역 */
+  padding-bottom: 10px;
 }
 
 /* PC hover */
@@ -130,7 +133,8 @@ nav a {
 
   position: absolute;
 
-  top: 68px;
+  /* 🔥 버튼 바로 아래 */
+  top: 60px;
   left: 0;
 
   width: 220px;
@@ -288,7 +292,7 @@ nav a {
     font-size: 14px;
   }
 
-  /* 🔥 모바일 버튼 가로 */
+  /* 모바일 버튼 가로 */
   .categories {
     flex-direction: row;
 
@@ -300,7 +304,7 @@ nav a {
     flex-wrap: nowrap;
   }
 
-  /* 🔥 버튼 크기 */
+  /* 버튼 크기 */
   .category,
   .dropdown-btn {
     width: 145px;
@@ -311,7 +315,7 @@ nav a {
     flex-shrink: 0;
   }
 
-  /* 드롭다운 */
+  /* 모바일 드롭다운 */
   .dropdown-menu {
     top: 58px;
     left: 0;
