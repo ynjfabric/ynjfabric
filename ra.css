@@ -103,10 +103,12 @@ nav a:hover {
 /* 드롭다운 영역 */
 .dropdown-category {
   position: relative;
-  padding-bottom: 10px;
+
+  display: flex;
+  align-items: center;
 }
 
-/* 🔥 main.css와 동일 버튼 */
+/* 🔥 main.css와 완전 동일 */
 .category,
 .dropdown-btn {
   width: 220px;
@@ -142,6 +144,13 @@ nav a:hover {
   -webkit-appearance: none;
 
   font-family: inherit;
+
+  flex-shrink: 0;
+
+  vertical-align: middle;
+
+  position: relative;
+  top: 0;
 }
 
 .category:hover,
@@ -337,8 +346,9 @@ nav a:hover {
     font-size: 14px;
   }
 
-  /* 🔥 모바일 버튼 가로 정렬 */
+  /* 🔥 main.css와 동일한 모바일 버튼 */
   .categories {
+    display: flex;
     flex-direction: row;
 
     justify-content: center;
@@ -349,20 +359,38 @@ nav a:hover {
     flex-wrap: nowrap;
   }
 
-  /* 🔥 main.css와 동일 */
+  .dropdown-category {
+    display: flex;
+    align-items: center;
+  }
+
   .category,
   .dropdown-btn {
     width: 145px;
     height: 52px;
 
-    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    flex-shrink: 0;
+    font-size: 15px;
 
     line-height: 1;
 
     padding: 0;
     margin: 0;
+
+    flex-shrink: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    font-family: inherit;
+
+    vertical-align: middle;
+
+    position: relative;
+    top: 0;
   }
 
   /* 모바일 드롭다운 */
