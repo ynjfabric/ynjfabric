@@ -1,22 +1,122 @@
-/* 🔥 카테고리 영역 (hero 아래) */
+/* =========================
+   기본 설정
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+
+  background: #fff;
+  color: #333;
+}
+
+
+/* =========================
+   헤더
+========================= */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 50px;
+
+  background: #222;
+  color: white;
+}
+
+header h2 {
+  font-size: 30px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+
+/* =========================
+   메인 배너
+========================= */
+
+.hero {
+  height: 320px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b')
+    center center / cover no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay h1 {
+  font-size: 52px;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  font-size: 18px;
+}
+
+
+/* =========================
+   카테고리
+========================= */
+
 .categories {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 35px 20px;
+
+  flex-wrap: wrap;
 }
 
-/* 🔥 드롭다운 전체 */
 .dropdown-category {
   position: relative;
-  display: inline-block;
 }
 
-/* 🔥 버튼 (중복 제거 + 통일) */
 .category {
-  padding: 15px 25px;
+  display: inline-block;
+
+  padding: 16px 26px;
+
   background: #f4f4f4;
+  color: black;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
   cursor: pointer;
-  border-radius: 5px;
+
   transition: 0.3s;
 }
 
@@ -24,33 +124,232 @@
   background: #ddd;
 }
 
-/* 🔥 드롭다운 메뉴 */
+
+/* 드롭다운 */
+
 .dropdown-menu {
   display: none;
+
   position: absolute;
   top: 100%;
   left: 0;
 
+  min-width: 180px;
+
   background: white;
-  border: 1px solid #ccc;
-  min-width: 150px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  overflow: hidden;
 
   z-index: 999;
 }
 
-/* 메뉴 항목 */
 .dropdown-menu a {
   display: block;
-  padding: 10px;
+
+  padding: 14px 16px;
+
   color: black;
   text-decoration: none;
+
+  transition: 0.3s;
 }
 
 .dropdown-menu a:hover {
   background: #eee;
 }
 
-/* 🔥 핵심: hover 시만 표시 */
 .dropdown-category:hover .dropdown-menu {
   display: block;
+}
+
+
+/* =========================
+   제목
+========================= */
+
+.page-title {
+  padding: 10px 20px 0;
+}
+
+.page-title h2 {
+  text-align: center;
+
+  font-size: 34px;
+}
+
+
+/* =========================
+   상품
+========================= */
+
+.products {
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding: 50px 20px 70px;
+}
+
+/* 상품 그리드 */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  gap: 25px;
+}
+
+/* 상품 카드 */
+
+.item {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: white;
+
+  transition: 0.3s;
+
+  text-align: center;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 이미지 */
+
+.item img {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* 상품명 */
+
+.item p {
+  padding: 14px 10px;
+
+  font-size: 16px;
+}
+
+
+/* =========================
+   로딩
+========================= */
+
+#loading {
+  text-align: center;
+
+  padding: 30px;
+
+  display: none;
+
+  color: #666;
+}
+
+
+/* =========================
+   모바일 최적화
+========================= */
+
+@media (max-width: 768px) {
+
+  /* 헤더 */
+  header {
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    text-align: center;
+  }
+
+  header h2 {
+    font-size: 25px;
+  }
+
+  nav {
+    gap: 15px;
+  }
+
+  nav a {
+    font-size: 15px;
+  }
+
+  /* 배너 */
+  .hero {
+    height: 200px;
+
+    padding: 20px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 30px;
+  }
+
+  .hero-overlay p {
+    font-size: 14px;
+  }
+
+  /* 카테고리 */
+  .categories {
+    gap: 15px;
+
+    padding: 25px 15px;
+  }
+
+  .category {
+    padding: 13px 18px;
+
+    font-size: 14px;
+  }
+
+  .dropdown-menu {
+    min-width: 160px;
+  }
+
+  /* 제목 */
+  .page-title h2 {
+    font-size: 26px;
+  }
+
+  /* 상품 */
+  .products {
+    padding: 35px 10px 60px;
+  }
+
+  .grid {
+
+    /* 🔥 모바일 3칸 */
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+  }
+
+  .item {
+    border-radius: 8px;
+  }
+
+  .item p {
+    padding: 10px 5px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+  }
+
 }

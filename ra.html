@@ -1,220 +1,155 @@
+<!-- co.html -->
+
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>레이온</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-}
+  <title>레이온 | Y&J Fabric</title>
 
-/* 헤더 */
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: #222;
-  color: white;
-}
-
-nav a {
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-/* 히어로 */
-.hero {
-  height: 300px;
-  background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-/* 🔥 카테고리 바 */
-.categories {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background: #fafafa;
-}
-
-/* 🔥 드롭다운 */
-.dropdown-category {
-  position: relative;
-  display: inline-block;
-}
-
-/* 🔥 버튼 (클릭 가능하게 a 태그) */
-.category {
-  display: inline-block;
-  padding: 15px 25px;
-  background: #f4f4f4;
-  border-radius: 5px;
-  color: black;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.category:hover {
-  background: #ddd;
-}
-
-/* 🔥 메뉴 */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-
-  background: white;
-  border: 1px solid #ccc;
-  min-width: 150px;
-
-  z-index: 999;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px;
-  color: black;
-  text-decoration: none;
-}
-
-.dropdown-menu a:hover {
-  background: #eee;
-}
-
-/* 🔥 hover 시 열림 */
-.dropdown-category:hover .dropdown-menu {
-  display: block;
-}
-
-/* 상품 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  padding: 20px;
-}
-
-.item {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-
-.item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-/* 로딩 */
-#loading {
-  text-align: center;
-  padding: 20px;
-  display: none;
-}
-</style>
+  <link rel="stylesheet" href="da.css">
 </head>
 
 <body>
 
-<header>
-  <h2>Y&J Fabric</h2>
-  <nav>
-    <a href="index.html">홈</a>
-    <a href="order.html">문의</a>
-  </nav>
-</header>
+  <!-- 헤더 -->
+  <header>
 
-<div class="hero">레이온</div>
+    <h2>Y&J Fabric</h2>
 
-<!-- 🔥 카테고리 -->
-<section class="categories">
-  <div class="dropdown-category">
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="order.html">문의</a>
+    </nav>
 
-    <!-- 클릭 + 드롭다운 동시에 -->
-    <a href="co.html" class="category">원단 ▾</a>
+  </header>
 
-    <div class="dropdown-menu">
-      <a href="co.html">면</a>
-      <a href="li.html">린넨</a>
-      <a href="de.html">데님</a>
-      <a href="ra.html">레이온</a>
-      <a href="da.html">다이마루</a>
+  <!-- 메인 배너 -->
+  <section class="hero">
+
+    <div class="hero-overlay">
+      <h1>레이온</h1>
+      <p>Premium Cotton Fabric</p>
     </div>
-    
 
-  </div>
-    <a href="order.html" class="category">주문 제작</a>
-</section>
+  </section>
 
-<h2 style="padding:20px;">레이온</h2>
+  <!-- 카테고리 -->
+  <section class="categories">
 
-<!-- 상품 -->
-<div class="grid" id="grid"></div>
+    <div class="dropdown-category">
 
-<div id="loading">로딩중...</div>
+      <div class="category">
+        원단 ▾
+      </div>
 
-<script>
-const grid = document.getElementById("grid");
-const loading = document.getElementById("loading");
+      <div class="dropdown-menu">
+        <a href="co.html">면</a>
+        <a href="li.html">린넨</a>
+        <a href="de.html">데님</a>
+        <a href="ra.html">레이온</a>
+        <a href="da.html">다이마루</a>
+      </div>
 
-let page = 0;
-const pageSize = 10;
+    </div>
 
-const products = [];
+    <a href="order.html" class="category">
+      주문 제작
+    </a>
 
-for (let i = 1; i <= 40; i++) {
-  products.push({
-    img: `images/fabric${(i % 5) + 1}.jpg`,
-    name: "상품" + i
-  });
-}
+  </section>
 
-function loadItems() {
-  loading.style.display = "block";
+  <!-- 제목 -->
+  <section class="page-title">
+    <h2>레이온 상품</h2>
+  </section>
 
-  setTimeout(() => {
-    const start = page * pageSize;
-    const end = start + pageSize;
+  <!-- 상품 -->
+  <section class="products">
 
-    const items = products.slice(start, end);
+    <div class="grid" id="grid"></div>
 
-    items.forEach(p => {
-      const div = document.createElement("div");
-      div.className = "item";
-      div.innerHTML = `
-        <img src="${p.img}">
-        <p>${p.name}</p>
-      `;
-      grid.appendChild(div);
+    <div id="loading">
+      로딩중...
+    </div>
+
+  </section>
+
+  <!-- 스크립트 -->
+  <script>
+
+    const grid = document.getElementById("grid");
+    const loading = document.getElementById("loading");
+
+    let page = 0;
+    const pageSize = 12;
+
+    const products = [];
+
+    for (let i = 1; i <= 60; i++) {
+
+      products.push({
+        img: `images/fabric${(i % 5) + 1}.jpg`,
+        name: `상품 ${i}`
+      });
+
+    }
+
+    function loadItems() {
+
+      loading.style.display = "block";
+
+      setTimeout(() => {
+
+        const start = page * pageSize;
+        const end = start + pageSize;
+
+        const items = products.slice(start, end);
+
+        items.forEach(product => {
+
+          const div = document.createElement("div");
+
+          div.className = "item";
+
+          div.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <p>${product.name}</p>
+          `;
+
+          grid.appendChild(div);
+
+        });
+
+        page++;
+
+        loading.style.display = "none";
+
+      }, 400);
+
+    }
+
+    window.addEventListener("scroll", () => {
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 150
+      ) {
+
+        if (page * pageSize < products.length) {
+          loadItems();
+        }
+
+      }
+
     });
 
-    page++;
-    loading.style.display = "none";
-  }, 500);
-}
+    loadItems();
 
-window.addEventListener("scroll", () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-    if (page * pageSize < products.length) {
-      loadItems();
-    }
-  }
-});
-
-loadItems();
-</script>
+  </script>
 
 </body>
+
 </html>
