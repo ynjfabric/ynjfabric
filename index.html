@@ -56,6 +56,7 @@
 
   <!-- 상품 -->
   <section class="products">
+
     <h2>메인 상품</h2>
 
     <div class="product-grid">
@@ -86,6 +87,7 @@
       </div>
 
     </div>
+
   </section>
 
   <!-- 푸터 -->
@@ -104,17 +106,15 @@
           <p>통신판매업 신고 완료</p>
         </div>
 
-        <!-- 모바일 묶음 -->
+        <!-- 고객센터 + 결제 -->
         <div class="footer-bottom-inner">
 
-          <!-- 고객센터 -->
           <div class="footer-col">
             <h3>고객센터</h3>
             <p>chan104201@naver.com</p>
             <p>ynjfabric@gmail.com</p>
           </div>
 
-          <!-- 결제 -->
           <div class="footer-col">
             <h3>결제 정보</h3>
             <p>은행 0000-000-000000</p>
@@ -131,19 +131,37 @@
 
   <!-- 드롭다운 -->
   <script>
-const dropdownBtn = document.querySelector(".dropdown-btn");
-const dropdownMenu = document.querySelector(".dropdown-menu");
 
-dropdownBtn.addEventListener("click", () => {
-  dropdownMenu.classList.toggle("show");
-});
+    const dropdownBtn =
+      document.querySelector(".dropdown-btn");
 
-window.addEventListener("click", (e) => {
-  if (!e.target.closest(".dropdown-category")) {
-    dropdownMenu.classList.remove("show");
-  }
-});
-</script>
+    const dropdownMenu =
+      document.querySelector(".dropdown-menu");
+
+    /* 버튼 클릭 */
+    dropdownBtn.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      dropdownMenu.classList.toggle("show");
+
+    });
+
+    /* 메뉴 클릭 시 유지 */
+    dropdownMenu.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+    });
+
+    /* 바깥 클릭 시 닫힘 */
+    window.addEventListener("click", () => {
+
+      dropdownMenu.classList.remove("show");
+
+    });
+
+  </script>
 
 </body>
 </html>
