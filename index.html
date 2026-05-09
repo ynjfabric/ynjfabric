@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Y&J Fabric</title>
 
   <link rel="stylesheet" href="main.css">
@@ -13,25 +12,30 @@
 
   <!-- 헤더 -->
   <header>
+
     <h2>Y&J Fabric</h2>
 
     <nav>
       <a href="index.html">홈</a>
       <a href="order.html">문의</a>
     </nav>
+
   </header>
 
   <!-- 메인 -->
   <section class="hero">
+
     <div class="hero-overlay">
       <h1>좋은 품질 착한 가격</h1>
       <p>Y&J Fabric</p>
     </div>
+
   </section>
 
   <!-- 카테고리 -->
   <section class="categories">
 
+    <!-- 원단 -->
     <div class="dropdown-category">
 
       <button class="category dropdown-btn" type="button">
@@ -39,15 +43,18 @@
       </button>
 
       <div class="dropdown-menu">
+
         <a href="co.html">면</a>
         <a href="li.html">린넨</a>
         <a href="de.html">데님</a>
         <a href="ra.html">레이온</a>
         <a href="da.html">다이마루</a>
+
       </div>
 
     </div>
 
+    <!-- 주문 제작 -->
     <a href="order.html" class="category">
       주문 제작
     </a>
@@ -97,28 +104,37 @@
 
       <div class="footer-bottom">
 
-        <!-- 기본정보 -->
+        <!-- 쇼핑몰 정보 -->
         <div class="footer-col">
+
           <h3>쇼핑몰 기본정보</h3>
+
           <p>상호명 : Y&J Fabric</p>
           <p>대표자명 : 박찬화</p>
           <p>사업자 등록번호 : 603-16-14153</p>
           <p>통신판매업 신고 완료</p>
+
         </div>
 
         <!-- 고객센터 + 결제 -->
         <div class="footer-bottom-inner">
 
           <div class="footer-col">
+
             <h3>고객센터</h3>
+
             <p>chan104201@naver.com</p>
             <p>ynjfabric@gmail.com</p>
+
           </div>
 
           <div class="footer-col">
+
             <h3>결제 정보</h3>
+
             <p>은행 0000-000-000000</p>
             <p>예금주 : 박찬화</p>
+
           </div>
 
         </div>
@@ -155,7 +171,14 @@
     });
 
     /* 바깥 클릭 시 닫힘 */
-    window.addEventListener("click", () => {
+    document.addEventListener("click", () => {
+
+      dropdownMenu.classList.remove("show");
+
+    });
+
+    /* 모바일 터치 대응 */
+    document.addEventListener("touchstart", () => {
 
       dropdownMenu.classList.remove("show");
 

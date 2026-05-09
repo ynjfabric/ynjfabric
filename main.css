@@ -77,11 +77,9 @@ nav a {
 
   gap: 20px;
   padding: 50px;
-
-  flex-wrap: wrap;
 }
 
-/* 버튼 동일화 */
+/* 버튼 동일 */
 .category,
 .dropdown-btn {
   width: 220px;
@@ -93,8 +91,8 @@ nav a {
 
   background: #f5f5f5;
 
-  border-radius: 10px;
   border: none;
+  border-radius: 10px;
 
   font-size: 18px;
   font-weight: 600;
@@ -102,14 +100,16 @@ nav a {
   text-decoration: none;
   color: #111;
 
+  cursor: pointer;
+
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 
-  padding: 0;
-  margin: 0;
+  transition: 0.2s;
+}
 
-  line-height: 1;
-
-  cursor: pointer;
+.category:hover,
+.dropdown-btn:hover {
+  background: #ececec;
 }
 
 /* =========================
@@ -129,7 +129,8 @@ nav a {
   display: none;
 
   position: absolute;
-  top: 65px;
+
+  top: 68px;
   left: 0;
 
   width: 220px;
@@ -139,20 +140,22 @@ nav a {
   border-radius: 10px;
   border: 1px solid #eee;
 
-  z-index: 9999;
-
   overflow: hidden;
+
+  z-index: 9999;
 
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
+/* 모바일 클릭 */
 .dropdown-menu.show {
   display: block;
 }
 
 .dropdown-menu a {
   display: block;
-  padding: 12px 16px;
+
+  padding: 14px 16px;
 
   color: #333;
   text-decoration: none;
@@ -285,36 +288,35 @@ nav a {
     font-size: 14px;
   }
 
-  /* 🔥 모바일 버튼 가로 정렬 */
+  /* 🔥 모바일 버튼 가로 */
   .categories {
-    display: flex;
     flex-direction: row;
 
     justify-content: center;
     align-items: center;
 
-    gap: 10px;
+    gap: 8px;
 
-    flex-wrap: nowrap; /* 줄바꿈 방지 */
+    flex-wrap: nowrap;
   }
 
-  /* 🔥 모바일 버튼 크기 */
+  /* 🔥 버튼 크기 */
   .category,
   .dropdown-btn {
-    width: 155px;
+    width: 145px;
     height: 52px;
 
-    font-size: 16px;
+    font-size: 15px;
+
+    flex-shrink: 0;
   }
 
   /* 드롭다운 */
   .dropdown-menu {
-    position: absolute;
-
     top: 58px;
     left: 0;
 
-    width: 155px;
+    width: 145px;
   }
 
   /* 상품 */
