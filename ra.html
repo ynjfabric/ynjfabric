@@ -9,7 +9,7 @@
 
   <title>레이온 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="da.css?v=1">
+  <link rel="stylesheet" href="ra.css?v=2">
 </head>
 
 <body>
@@ -77,11 +77,15 @@
 
   </section>
 
+  <!-- 맨 위 버튼 -->
+  <button id="topBtn">↑</button>
+
   <!-- 스크립트 -->
   <script>
 
     const grid = document.getElementById("grid");
     const loading = document.getElementById("loading");
+    const topBtn = document.getElementById("topBtn");
 
     let page = 0;
     const pageSize = 12;
@@ -143,6 +147,23 @@
         }
 
       }
+
+      /* 맨 위 버튼 표시 */
+      if (window.scrollY > 300) {
+        topBtn.classList.add("show");
+      } else {
+        topBtn.classList.remove("show");
+      }
+
+    });
+
+    /* 맨 위 이동 */
+    topBtn.addEventListener("click", () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
     });
 

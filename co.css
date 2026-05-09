@@ -108,7 +108,7 @@ nav a:hover {
   align-items: center;
 }
 
-/* 🔥 main.css와 완전 동일 */
+/* 버튼 */
 .category,
 .dropdown-btn {
   width: 220px;
@@ -235,8 +235,6 @@ nav a:hover {
   padding: 50px 20px 70px;
 }
 
-/* 상품 그리드 */
-
 .grid {
   display: grid;
 
@@ -304,6 +302,49 @@ nav a:hover {
 
 
 /* =========================
+   맨 위 버튼
+========================= */
+
+#topBtn {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  width: 48px;
+  height: 48px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #222;
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#topBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#topBtn:hover {
+  background: #444;
+}
+
+
+/* =========================
    모바일 최적화
 ========================= */
 
@@ -346,7 +387,7 @@ nav a:hover {
     font-size: 14px;
   }
 
-  /* 🔥 main.css와 동일한 모바일 버튼 */
+  /* 모바일 버튼 */
   .categories {
     display: flex;
     flex-direction: row;
@@ -412,8 +453,6 @@ nav a:hover {
   }
 
   .grid {
-
-    /* 모바일 3칸 */
     grid-template-columns: repeat(3, 1fr);
 
     gap: 10px;
@@ -429,6 +468,17 @@ nav a:hover {
     font-size: 13px;
 
     line-height: 1.4;
+  }
+
+  /* 모바일 맨 위 버튼 */
+  #topBtn {
+    width: 44px;
+    height: 44px;
+
+    right: 15px;
+    bottom: 15px;
+
+    font-size: 18px;
   }
 
 }
