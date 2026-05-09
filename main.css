@@ -306,14 +306,26 @@ nav a {
 
   /* 버튼 크기 */
   .category,
-  .dropdown-btn {
-    width: 145px;
-    height: 52px;
+.dropdown-btn {
+  width: 145px;
+  height: 52px;
 
-    font-size: 15px;
+  font-size: 15px;
 
-    flex-shrink: 0;
-  }
+  flex-shrink: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  vertical-align: middle;
+
+  font-family: inherit;
+
+  line-height: 1;
+
+  padding: 0;
+  margin: 0;
+}
 
   /* 모바일 드롭다운 */
   .dropdown-menu {
