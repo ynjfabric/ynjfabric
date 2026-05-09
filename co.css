@@ -8,9 +8,13 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
-
   background: #fff;
   color: #333;
 }
@@ -42,9 +46,7 @@ nav {
 
 nav a {
   color: white;
-
   text-decoration: none;
-
   transition: 0.3s;
 }
 
@@ -93,57 +95,93 @@ nav a:hover {
   align-items: center;
 
   gap: 20px;
-
   padding: 35px 20px;
 
   flex-wrap: wrap;
 }
 
+/* 드롭다운 영역 */
 .dropdown-category {
   position: relative;
+  padding-bottom: 10px;
 }
 
-.category {
-  display: inline-block;
+/* 🔥 main.css와 동일 버튼 */
+.category,
+.dropdown-btn {
+  width: 220px;
+  height: 60px;
 
-  padding: 16px 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  background: #f4f4f4;
-  color: black;
+  background: #f5f5f5;
 
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: 600;
 
   text-decoration: none;
+  color: #111;
 
   cursor: pointer;
 
-  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+  transition: 0.2s;
+
+  line-height: 1;
+
+  padding: 0;
+  margin: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  font-family: inherit;
 }
 
-.category:hover {
-  background: #ddd;
+.category:hover,
+.dropdown-btn:hover {
+  background: #ececec;
 }
 
 
-/* 드롭다운 */
+/* =========================
+   드롭다운
+========================= */
+
+.dropdown-category:hover .dropdown-menu {
+  display: block;
+}
 
 .dropdown-menu {
   display: none;
 
   position: absolute;
-  top: 100%;
+
+  top: 60px;
   left: 0;
 
-  min-width: 180px;
+  width: 220px;
 
   background: white;
 
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
 
   overflow: hidden;
 
-  z-index: 999;
+  z-index: 9999;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.dropdown-menu.show {
+  display: block;
 }
 
 .dropdown-menu a {
@@ -161,10 +199,6 @@ nav a:hover {
   background: #eee;
 }
 
-.dropdown-category:hover .dropdown-menu {
-  display: block;
-}
-
 
 /* =========================
    제목
@@ -176,7 +210,6 @@ nav a:hover {
 
 .page-title h2 {
   text-align: center;
-
   font-size: 34px;
 }
 
@@ -293,7 +326,6 @@ nav a:hover {
   /* 배너 */
   .hero {
     height: 200px;
-
     padding: 20px;
   }
 
@@ -305,21 +337,40 @@ nav a:hover {
     font-size: 14px;
   }
 
-  /* 카테고리 */
+  /* 🔥 모바일 버튼 가로 정렬 */
   .categories {
-    gap: 15px;
+    flex-direction: row;
 
-    padding: 25px 15px;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: nowrap;
   }
 
-  .category {
-    padding: 13px 18px;
+  /* 🔥 main.css와 동일 */
+  .category,
+  .dropdown-btn {
+    width: 145px;
+    height: 52px;
 
-    font-size: 14px;
+    font-size: 15px;
+
+    flex-shrink: 0;
+
+    line-height: 1;
+
+    padding: 0;
+    margin: 0;
   }
 
+  /* 모바일 드롭다운 */
   .dropdown-menu {
-    min-width: 160px;
+    top: 58px;
+    left: 0;
+
+    width: 145px;
   }
 
   /* 제목 */
@@ -334,7 +385,7 @@ nav a:hover {
 
   .grid {
 
-    /* 🔥 모바일 3칸 */
+    /* 모바일 3칸 */
     grid-template-columns: repeat(3, 1fr);
 
     gap: 10px;
