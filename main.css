@@ -333,31 +333,33 @@ nav a {
 
   /* 모바일 버튼 동일 */
   .category,
-  .dropdown-btn {
-    width: 145px;
-    height: 52px;
+.dropdown-btn {
+  width: 145px;
+  height: 52px;
 
-    font-size: 15px;
+  font-size: 15px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    appearance: none;
-    -webkit-appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
 
-    line-height: 1;
+  font-family: inherit;
 
-    padding: 0;
-    margin: 0;
+  line-height: 1;
 
-    vertical-align: top;
+  padding: 0;
+  margin: 0;
 
-    display: inline-flex;
+  border: none;
 
-    justify-content: center;
-    align-items: center;
-  }
+  position: relative;
+  top: -1px;
+}
 
   /* 모바일 드롭다운 */
   .dropdown-menu {
