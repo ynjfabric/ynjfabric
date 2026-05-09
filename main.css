@@ -25,7 +25,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 18px 60px;
+
   background: #222;
   color: white;
 }
@@ -106,6 +108,8 @@ nav a {
   margin: 0;
 
   line-height: 1;
+
+  cursor: pointer;
 }
 
 /* =========================
@@ -136,6 +140,10 @@ nav a {
   border: 1px solid #eee;
 
   z-index: 9999;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 .dropdown-menu.show {
@@ -144,10 +152,12 @@ nav a {
 
 .dropdown-menu a {
   display: block;
-  padding: 12px;
+  padding: 12px 16px;
 
   color: #333;
   text-decoration: none;
+
+  transition: 0.2s;
 }
 
 .dropdown-menu a:hover {
@@ -161,6 +171,10 @@ nav a {
 .products {
   padding: 80px 20px;
   text-align: center;
+}
+
+.products h2 {
+  margin-bottom: 40px;
 }
 
 .product-grid {
@@ -200,6 +214,10 @@ nav a {
 
   box-shadow:
     0 10px 20px rgba(0,0,0,0.08);
+}
+
+.fabric-sample p {
+  margin-top: 12px;
 }
 
 /* =========================
@@ -250,29 +268,68 @@ nav a {
     padding: 18px;
   }
 
+  nav {
+    gap: 16px;
+  }
+
   .hero {
     height: 240px;
+    padding: 20px;
   }
 
   .hero-overlay h1 {
     font-size: 28px;
   }
 
-  /* 🔥 버튼 가로 유지 */
+  .hero-overlay p {
+    font-size: 14px;
+  }
+
+  /* 🔥 모바일 버튼 가로 정렬 */
   .categories {
+    display: flex;
     flex-direction: row;
 
     justify-content: center;
     align-items: center;
 
-    gap: 12px;
+    gap: 10px;
+
+    flex-wrap: nowrap; /* 줄바꿈 방지 */
+  }
+
+  /* 🔥 모바일 버튼 크기 */
+  .category,
+  .dropdown-btn {
+    width: 155px;
+    height: 52px;
+
+    font-size: 16px;
   }
 
   /* 드롭다운 */
   .dropdown-menu {
     position: absolute;
-    top: 65px;
+
+    top: 58px;
     left: 0;
+
+    width: 155px;
+  }
+
+  /* 상품 */
+  .products {
+    padding: 60px 15px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .sample-box {
+    max-width: 220px;
+    height: 220px;
   }
 
   /* 푸터 */
@@ -287,8 +344,16 @@ nav a {
     display: flex;
     justify-content: center;
 
-    gap: 40px;
+    gap: 30px;
     width: 100%;
+  }
+
+  .footer-col h3 {
+    font-size: 17px;
+  }
+
+  .footer-col p {
+    font-size: 13px;
   }
 
 }
