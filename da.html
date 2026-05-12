@@ -9,7 +9,7 @@
 
   <title>다이마루 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="da.css?v=2">
+  <link rel="stylesheet" href="co.css?v=4">
 </head>
 
 <body>
@@ -80,84 +80,163 @@
   <!-- 맨 위 버튼 -->
   <button id="topBtn">↑</button>
 
-  <!-- 스크립트 -->
-  <script>
+  <!-- Firebase -->
+  <script type="module">
 
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      where
+    }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+    // Firebase 설정
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAGNPNq_hkyUL4CRrUCNpMMQA9CmLGZy5o",
+
+      authDomain: "ynjfabrickor.firebaseapp.com",
+
+      projectId: "ynjfabrickor",
+
+      storageBucket: "ynjfabrickor.firebasestorage.app",
+
+      messagingSenderId: "807605740695",
+
+      appId: "1:807605740695:web:4aaa88cf3387266bb635d2"
+
+    };
+
+    // Firebase 시작
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+    // 요소
     const grid = document.getElementById("grid");
+
     const loading = document.getElementById("loading");
+
     const topBtn = document.getElementById("topBtn");
 
+    // 페이지
     let page = 0;
+
     const pageSize = 12;
 
-    const products = [];
+    let products = [];
 
-    for (let i = 1; i <= 60; i++) {
+    // Firestore 상품 불러오기
+    async function loadProducts() {
 
-      products.push({
-        img: `images/fabric${(i % 5) + 1}.jpg`,
-        name: `상품 ${i}`
-      });
+      try {
 
-    }
+        loading.style.display = "block";
 
-    function loadItems() {
+        // 🔥 products 컬렉션에서 category가 co인 상품만 가져오기
+        const q = query(
+          collection(db, "products"),
+          where("category", "==", "da")
+        );
 
-      loading.style.display = "block";
+        const querySnapshot = await getDocs(q);
 
-      setTimeout(() => {
+        products = [];
 
-        const start = page * pageSize;
-        const end = start + pageSize;
+        querySnapshot.forEach((doc) => {
 
-        const items = products.slice(start, end);
-
-        items.forEach(product => {
-
-          const div = document.createElement("div");
-
-          div.className = "item";
-
-          div.innerHTML = `
-            <img src="${product.img}" alt="${product.name}">
-            <p>${product.name}</p>
-          `;
-
-          grid.appendChild(div);
+          products.push(doc.data());
 
         });
 
-        page++;
+        // 상품 없을 때
+        if (products.length === 0) {
 
-        loading.style.display = "none";
+          loading.innerHTML = "등록된 상품이 없습니다.";
 
-      }, 400);
+          return;
+
+        }
+
+        // 첫 상품 출력
+        loadItems();
+
+      } catch (error) {
+
+        console.error(error);
+
+        loading.innerHTML = "상품을 불러오지 못했습니다.";
+
+      }
 
     }
 
+    // 상품 출력
+    function loadItems() {
+
+      const start = page * pageSize;
+
+      const end = start + pageSize;
+
+      const items = products.slice(start, end);
+
+      items.forEach(product => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <p>${product.name}</p>
+        `;
+
+        grid.appendChild(div);
+
+      });
+
+      page++;
+
+      loading.style.display = "none";
+
+    }
+
+    // 스크롤
     window.addEventListener("scroll", () => {
 
+      // 무한 스크롤
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 150
       ) {
 
         if (page * pageSize < products.length) {
+
           loadItems();
+
         }
 
       }
 
-      /* 맨 위 버튼 표시 */
+      // 맨 위 버튼 표시
       if (window.scrollY > 300) {
+
         topBtn.classList.add("show");
+
       } else {
+
         topBtn.classList.remove("show");
+
       }
 
     });
 
-    /* 맨 위 이동 */
+    // 맨 위 이동
     topBtn.addEventListener("click", () => {
 
       window.scrollTo({
@@ -167,7 +246,8 @@
 
     });
 
-    loadItems();
+    // 실행
+    loadProducts();
 
   </script>
 

@@ -480,5 +480,68 @@ nav a:hover {
 
     font-size: 18px;
   }
+  /* =========================
+   맨 위 버튼
+========================= */
+
+#topBtn {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  width: 52px;
+  height: 52px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #222;
+  color: white;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s;
+
+  z-index: 9999;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#topBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#topBtn:hover {
+  background: #444;
+
+  transform: translateY(-3px);
+}
+
+
+/* =========================
+   모바일
+========================= */
+
+@media (max-width: 768px) {
+
+  #topBtn {
+    width: 46px;
+    height: 46px;
+
+    right: 15px;
+    bottom: 15px;
+
+    font-size: 18px;
+  }
+
+}
 
 }
