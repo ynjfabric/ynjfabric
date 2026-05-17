@@ -1,37 +1,82 @@
-<!-- co.html -->
-
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>린넨 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="co.css?v=4">
+  <link rel="stylesheet" href="co.css?v=5">
 
   <style>
 
-    /* 검색창 */
-    .search-box{
+    /* 검색 + 정렬 */
+    .search-wrap{
       width:100%;
-      max-width:500px;
+      max-width:900px;
+
       margin:20px auto 10px;
+
       padding:0 20px;
+
+      display:flex;
+      align-items:center;
+
+      gap:10px;
+    }
+
+    /* 검색 */
+    .search-box{
+      flex:1;
     }
 
     .search-box input{
       width:100%;
       height:50px;
+
       border:1px solid #ddd;
       border-radius:12px;
+
       padding:0 15px;
+
       font-size:16px;
+
       outline:none;
     }
 
     .search-box input:focus{
+      border-color:#222;
+    }
+
+    /* 정렬 */
+    .sort-box{
+      width:130px;
+      flex-shrink:0;
+    }
+
+    .sort-box select{
+      width:100%;
+      height:50px;
+
+      border:1px solid #ddd;
+      border-radius:12px;
+
+      padding:0 12px;
+
+      font-size:15px;
+
+      background:#fff;
+
+      outline:none;
+
+      cursor:pointer;
+    }
+
+    .sort-box select:focus{
       border-color:#222;
     }
 
@@ -49,6 +94,25 @@
 
     .item img.loaded{
       opacity:1;
+    }
+
+    /* 모바일 */
+    @media (max-width:768px){
+
+      .search-wrap{
+        gap:8px;
+      }
+
+      .sort-box{
+        width:120px;
+      }
+
+      .search-box input,
+      .sort-box select{
+        height:46px;
+        font-size:14px;
+      }
+
     }
 
   </style>
@@ -109,14 +173,36 @@
     <h2>린넨 상품</h2>
   </section>
 
-  <!-- 검색 -->
-  <div class="search-box">
+  <!-- 검색 + 정렬 -->
+  <div class="search-wrap">
 
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="상품 검색"
-    >
+    <!-- 검색 -->
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="상품 검색"
+      >
+
+    </div>
+
+    <!-- 정렬 -->
+    <div class="sort-box">
+
+      <select id="sortSelect">
+
+        <option value="latest">
+          최신순
+        </option>
+
+        <option value="name">
+          이름순
+        </option>
+
+      </select>
+
+    </div>
 
   </div>
 
@@ -184,6 +270,9 @@
     const searchInput =
       document.getElementById("searchInput");
 
+    const sortSelect =
+      document.getElementById("sortSelect");
+
     // 페이지
     let page = 0;
 
@@ -216,14 +305,9 @@
 
         });
 
-        // 최신순 정렬
-        products.sort((a, b) => {
-
-          return b.createdAt - a.createdAt;
-
-        });
-
         filteredProducts = [...products];
+
+        sortProducts("latest");
 
         // 상품 없을 때
         if (products.length === 0) {
@@ -243,6 +327,36 @@
 
         loading.innerHTML =
           "상품을 불러오지 못했습니다.";
+
+      }
+
+    }
+
+    // 정렬 함수
+    function sortProducts(type){
+
+      // 최신순
+      if(type === "latest"){
+
+        filteredProducts.sort((a, b) => {
+
+          return b.createdAt - a.createdAt;
+
+        });
+
+      }
+
+      // 이름순
+      if(type === "name"){
+
+        filteredProducts.sort((a, b) => {
+
+          return a.name.localeCompare(
+            b.name,
+            "ko"
+          );
+
+        });
 
       }
 
@@ -341,34 +455,24 @@
         .toLowerCase()
         .trim();
 
-      filteredProducts = [...products].sort((a, b) => {
+      filteredProducts = [...products].filter(product => {
 
-        const aMatch =
-          a.name.toLowerCase().includes(keyword);
-
-        const bMatch =
-          b.name.toLowerCase().includes(keyword);
-
-        if(aMatch && !bMatch) return -1;
-
-        if(!aMatch && bMatch) return 1;
-
-        return 0;
+        return product.name
+          .toLowerCase()
+          .includes(keyword);
 
       });
 
-      if(keyword){
+      sortProducts(sortSelect.value);
 
-        filteredProducts =
-          filteredProducts.filter(product => {
+      renderProducts(true);
 
-            return product.name
-              .toLowerCase()
-              .includes(keyword);
+    });
 
-          });
+    // 정렬 변경
+    sortSelect.addEventListener("change", () => {
 
-      }
+      sortProducts(sortSelect.value);
 
       renderProducts(true);
 
