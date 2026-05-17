@@ -241,11 +241,10 @@
       try{
 
         const q = query(
-          collection(db, "products"),
-          where("category", "==", "ma"),
-          orderBy("createdAt", "desc"),
-          limit(5)
-        );
+  collection(db, "products"),
+  where("category", "==", "ma"),
+  limit(5)
+);
 
         const snapshot =
           await getDocs(q);

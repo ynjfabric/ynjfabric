@@ -9,7 +9,50 @@
 
   <title>린넨 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="li.css?v=4">
+  <link rel="stylesheet" href="co.css?v=4">
+
+  <style>
+
+    /* 검색창 */
+    .search-box{
+      width:100%;
+      max-width:500px;
+      margin:20px auto 10px;
+      padding:0 20px;
+    }
+
+    .search-box input{
+      width:100%;
+      height:50px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:0 15px;
+      font-size:16px;
+      outline:none;
+    }
+
+    .search-box input:focus{
+      border-color:#222;
+    }
+
+    /* 이미지 로딩 효과 */
+    .item img{
+      width:100%;
+      display:block;
+      border-radius:10px;
+      background:#f1f1f1;
+      opacity:0;
+      transition:opacity .3s ease;
+      aspect-ratio:1/1;
+      object-fit:cover;
+    }
+
+    .item img.loaded{
+      opacity:1;
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -30,8 +73,8 @@
   <section class="hero">
 
     <div class="hero-overlay">
-      <h1> 린넨 </h1>
-      <p>Premium Cotton Fabric</p>
+      <h1>린넨</h1>
+      <p>Premium Linen Fabric</p>
     </div>
 
   </section>
@@ -63,8 +106,19 @@
 
   <!-- 제목 -->
   <section class="page-title">
-    <h2>면 원단 상품</h2>
+    <h2>린넨 상품</h2>
   </section>
+
+  <!-- 검색 -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="상품 검색"
+    >
+
+  </div>
 
   <!-- 상품 -->
   <section class="products">
@@ -118,11 +172,17 @@
     const db = getFirestore(app);
 
     // 요소
-    const grid = document.getElementById("grid");
+    const grid =
+      document.getElementById("grid");
 
-    const loading = document.getElementById("loading");
+    const loading =
+      document.getElementById("loading");
 
-    const topBtn = document.getElementById("topBtn");
+    const topBtn =
+      document.getElementById("topBtn");
+
+    const searchInput =
+      document.getElementById("searchInput");
 
     // 페이지
     let page = 0;
@@ -131,6 +191,8 @@
 
     let products = [];
 
+    let filteredProducts = [];
+
     // Firestore 상품 불러오기
     async function loadProducts() {
 
@@ -138,13 +200,13 @@
 
         loading.style.display = "block";
 
-        // 🔥 products 컬렉션에서 category가 co인 상품만 가져오기
         const q = query(
           collection(db, "products"),
           where("category", "==", "li")
         );
 
-        const querySnapshot = await getDocs(q);
+        const querySnapshot =
+          await getDocs(q);
 
         products = [];
 
@@ -154,45 +216,72 @@
 
         });
 
+        // 최신순 정렬
+        products.sort((a, b) => {
+
+          return b.createdAt - a.createdAt;
+
+        });
+
+        filteredProducts = [...products];
+
         // 상품 없을 때
         if (products.length === 0) {
 
-          loading.innerHTML = "등록된 상품이 없습니다.";
+          loading.innerHTML =
+            "등록된 상품이 없습니다.";
 
           return;
 
         }
 
-        // 첫 상품 출력
-        loadItems();
+        renderProducts();
 
       } catch (error) {
 
         console.error(error);
 
-        loading.innerHTML = "상품을 불러오지 못했습니다.";
+        loading.innerHTML =
+          "상품을 불러오지 못했습니다.";
 
       }
 
     }
 
     // 상품 출력
-    function loadItems() {
+    function renderProducts(reset = true) {
 
-      const start = page * pageSize;
+      if(reset){
 
-      const end = start + pageSize;
+        page = 0;
 
-      const items = products.slice(start, end);
+        grid.innerHTML = "";
+
+      }
+
+      const start =
+        page * pageSize;
+
+      const end =
+        start + pageSize;
+
+      const items =
+        filteredProducts.slice(start, end);
 
       items.forEach(product => {
 
-        const div = document.createElement("div");
+        const div =
+          document.createElement("div");
 
         div.className = "item";
 
         div.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+          >
+
           <p>${product.name}</p>
         `;
 
@@ -200,11 +289,90 @@
 
       });
 
+      // 이미지 로딩 완료 효과
+      const images =
+        grid.querySelectorAll("img");
+
+      images.forEach((img) => {
+
+        if(img.complete){
+
+          img.classList.add("loaded");
+
+        } else {
+
+          img.onload = () => {
+
+            img.classList.add("loaded");
+
+          };
+
+        }
+
+      });
+
       page++;
+
+      // 검색 결과 없을 때
+      if(filteredProducts.length === 0){
+
+        grid.innerHTML = `
+          <p style="
+            width:100%;
+            text-align:center;
+            padding:40px 0;
+            color:#777;
+          ">
+            검색 결과가 없습니다.
+          </p>
+        `;
+
+      }
 
       loading.style.display = "none";
 
     }
+
+    // 검색
+    searchInput.addEventListener("input", () => {
+
+      const keyword =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+      filteredProducts = [...products].sort((a, b) => {
+
+        const aMatch =
+          a.name.toLowerCase().includes(keyword);
+
+        const bMatch =
+          b.name.toLowerCase().includes(keyword);
+
+        if(aMatch && !bMatch) return -1;
+
+        if(!aMatch && bMatch) return 1;
+
+        return 0;
+
+      });
+
+      if(keyword){
+
+        filteredProducts =
+          filteredProducts.filter(product => {
+
+            return product.name
+              .toLowerCase()
+              .includes(keyword);
+
+          });
+
+      }
+
+      renderProducts(true);
+
+    });
 
     // 스크롤
     window.addEventListener("scroll", () => {
@@ -215,15 +383,18 @@
         document.body.offsetHeight - 150
       ) {
 
-        if (page * pageSize < products.length) {
+        if (
+          page * pageSize <
+          filteredProducts.length
+        ) {
 
-          loadItems();
+          renderProducts(false);
 
         }
 
       }
 
-      // 맨 위 버튼 표시
+      // 맨 위 버튼
       if (window.scrollY > 300) {
 
         topBtn.classList.add("show");
