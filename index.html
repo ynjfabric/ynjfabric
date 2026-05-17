@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Y&J Fabric</title>
 
   <link rel="stylesheet" href="main.css?v=1">
+
+  <style>
+
+    .main-product-image{
+      width:100%;
+      border-radius:12px;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      background:#f3f3f3;
+      opacity:0;
+      transition:opacity .3s ease;
+      display:block;
+    }
+
+    .main-product-image.loaded{
+      opacity:1;
+    }
+
+  </style>
+
+</head>
 
 <body>
 
@@ -37,7 +63,10 @@
     <!-- 원단 -->
     <div class="dropdown-category">
 
-      <button class="category dropdown-btn" type="button">
+      <button
+        class="category dropdown-btn"
+        type="button"
+      >
         원단 ▾
       </button>
 
@@ -65,34 +94,11 @@
 
     <h2>메인 상품</h2>
 
-    <div class="product-grid">
-
-      <div class="fabric-sample">
-        <div class="sample-box">샘플</div>
-        <p>샘플A</p>
-      </div>
-
-      <div class="fabric-sample">
-        <div class="sample-box">샘플</div>
-        <p>샘플B</p>
-      </div>
-
-      <div class="fabric-sample">
-        <div class="sample-box">샘플</div>
-        <p>샘플C</p>
-      </div>
-
-      <div class="fabric-sample">
-        <div class="sample-box">샘플</div>
-        <p>샘플D</p>
-      </div>
-
-      <div class="fabric-sample">
-        <div class="sample-box">샘플</div>
-        <p>샘플E</p>
-      </div>
-
-    </div>
+    <!-- 🔥 Firebase 상품 자동 출력 -->
+    <div
+      class="product-grid"
+      id="productGrid"
+    ></div>
 
   </section>
 
@@ -153,7 +159,7 @@
     const dropdownMenu =
       document.querySelector(".dropdown-menu");
 
-    /* 버튼 클릭 */
+    // 버튼 클릭
     dropdownBtn.addEventListener("click", (e) => {
 
       e.stopPropagation();
@@ -162,21 +168,21 @@
 
     });
 
-    /* 메뉴 클릭 시 유지 */
+    // 메뉴 클릭 시 유지
     dropdownMenu.addEventListener("click", (e) => {
 
       e.stopPropagation();
 
     });
 
-    /* 바깥 클릭 시 닫힘 */
+    // 바깥 클릭 시 닫힘
     document.addEventListener("click", () => {
 
       dropdownMenu.classList.remove("show");
 
     });
 
-    /* 모바일 터치 대응 */
+    // 모바일 터치 대응
     document.addEventListener("touchstart", () => {
 
       dropdownMenu.classList.remove("show");
@@ -185,5 +191,159 @@
 
   </script>
 
+  <!-- Firebase -->
+  <script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      where,
+      limit,
+      orderBy
+    }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+    // Firebase 설정
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyAGNPNq_hkyUL4CRrUCNpMMQA9CmLGZy5o",
+
+      authDomain: "ynjfabrickor.firebaseapp.com",
+
+      projectId: "ynjfabrickor",
+
+      storageBucket: "ynjfabrickor.firebasestorage.app",
+
+      messagingSenderId: "807605740695",
+
+      appId: "1:807605740695:web:4aaa88cf3387266bb635d2"
+
+    };
+
+    // Firebase 시작
+    const app =
+      initializeApp(firebaseConfig);
+
+    const db =
+      getFirestore(app);
+
+    const productGrid =
+      document.getElementById("productGrid");
+
+    // 메인 상품 불러오기
+    async function loadMainProducts(){
+
+      try{
+
+        const q = query(
+          collection(db, "products"),
+          where("category", "==", "ma"),
+          orderBy("createdAt", "desc"),
+          limit(5)
+        );
+
+        const snapshot =
+          await getDocs(q);
+
+        productGrid.innerHTML = "";
+
+        // 상품 없을 때
+        if(snapshot.empty){
+
+          productGrid.innerHTML = `
+            <p style="
+              width:100%;
+              text-align:center;
+              padding:40px 0;
+              color:#777;
+            ">
+              메인 상품이 없습니다.
+            </p>
+          `;
+
+          return;
+
+        }
+
+        snapshot.forEach((doc) => {
+
+          const product =
+            doc.data();
+
+          const div =
+            document.createElement("div");
+
+          div.className =
+            "fabric-sample";
+
+          div.innerHTML = `
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              class="main-product-image"
+              loading="lazy"
+            >
+
+            <p>${product.name}</p>
+
+          `;
+
+          productGrid.appendChild(div);
+
+        });
+
+        // 이미지 로딩 효과
+        const images =
+          document.querySelectorAll(".main-product-image");
+
+        images.forEach((img) => {
+
+          if(img.complete){
+
+            img.classList.add("loaded");
+
+          } else {
+
+            img.onload = () => {
+
+              img.classList.add("loaded");
+
+            };
+
+          }
+
+        });
+
+      }catch(error){
+
+        console.log(error);
+
+        productGrid.innerHTML = `
+          <p style="
+            width:100%;
+            text-align:center;
+            padding:40px 0;
+            color:red;
+          ">
+            상품을 불러오지 못했습니다.
+          </p>
+        `;
+
+      }
+
+    }
+
+    // 실행
+    loadMainProducts();
+
+  </script>
+
 </body>
+
 </html>

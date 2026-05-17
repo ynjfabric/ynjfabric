@@ -112,7 +112,6 @@ nav a {
 
   transition: 0.2s;
 
-  /* 핵심 정렬 */
   appearance: none;
   -webkit-appearance: none;
 
@@ -139,8 +138,6 @@ nav a {
 
 .dropdown-category {
   position: relative;
-
-  /* hover 유지 */
   padding-bottom: 10px;
 }
 
@@ -212,6 +209,9 @@ nav a {
     repeat(auto-fit, minmax(240px, 1fr));
 
   gap: 30px;
+
+  max-width: 1300px;
+  margin: auto;
 }
 
 .fabric-sample {
@@ -220,8 +220,7 @@ nav a {
 
 .sample-box {
   width: 100%;
-  max-width: 250px;
-  height: 250px;
+  aspect-ratio: 1/1;
 
   margin: auto;
 
@@ -234,7 +233,17 @@ nav a {
   border-radius: 14px;
   border: 1px solid #eee;
 
+  overflow: hidden;
+
   transition: 0.3s;
+}
+
+.sample-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  display: block;
 }
 
 .sample-box:hover {
@@ -246,6 +255,7 @@ nav a {
 
 .fabric-sample p {
   margin-top: 12px;
+  font-size: 16px;
 }
 
 /* =========================
@@ -333,33 +343,34 @@ nav a {
 
   /* 모바일 버튼 동일 */
   .category,
-.dropdown-btn {
-  width: 145px;
-  height: 52px;
+  .dropdown-btn {
 
-  font-size: 15px;
+    width: 145px;
+    height: 52px;
 
-  flex-shrink: 0;
+    font-size: 15px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex-shrink: 0;
 
-  appearance: none;
-  -webkit-appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
 
-  line-height: 1;
+    font-family: inherit;
 
-  padding: 0;
-  margin: 0;
+    line-height: 1;
 
-  border: none;
+    padding: 0;
+    margin: 0;
 
-  position: relative;
-  top: -1px;
-}
+    border: none;
+
+    position: relative;
+    top: -1px;
+  }
 
   /* 모바일 드롭다운 */
   .dropdown-menu {
@@ -378,14 +389,33 @@ nav a {
     font-size: 26px;
   }
 
+  /* 🔥 모바일 2열 */
   .product-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+
+  }
+
+  .fabric-sample {
+    width: 100%;
   }
 
   .sample-box {
-    max-width: 220px;
-    height: 220px;
+
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 10px;
+  }
+
+  .fabric-sample p {
+    font-size: 14px;
+    margin-top: 8px;
   }
 
   /* 푸터 */
