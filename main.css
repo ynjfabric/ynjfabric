@@ -50,9 +50,9 @@ nav a {
   height: 520px;
 
   background:
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b')
-    center/cover no-repeat;
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url('./images/mainpage.jpg')
+    center center / cover no-repeat;
 
   display: flex;
   justify-content: center;
