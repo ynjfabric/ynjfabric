@@ -99,7 +99,6 @@ nav a:hover {
 
 .dropdown-category {
   position: relative;
-
   display: flex;
   align-items: center;
 }
@@ -202,53 +201,92 @@ nav a:hover {
 
 .products {
   max-width: 1400px;
-
   margin: auto;
-
   padding: 50px 20px 70px;
 }
 
 .grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(5, 1fr);
-
+  grid-template-columns: repeat(5, 1fr);
   gap: 25px;
 }
 
+/* 상품 카드 */
 .item {
   border: 1px solid #ddd;
   border-radius: 12px;
 
   overflow: hidden;
-
   background: white;
 
   transition: 0.3s;
-
   text-align: center;
+
+  position: relative;
 }
 
 .item:hover {
   transform: translateY(-5px);
-
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* 이미지 */
+.item-image-wrap {
+  position: relative;
+}
+
+/* 이미지 */
 .item img {
   width: 100%;
-
   aspect-ratio: 1 / 1;
-
   object-fit: cover;
 
   display: block;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.item img.loaded {
+  opacity: 1;
+}
+
+/* =========================
+   🔥 품절 (main.css 통일)
+========================= */
+
+/* 이미지 품절 효과 */
+.soldout-image {
+  filter: grayscale(100%) brightness(0.7);
+  transform: scale(0.98);
+  transition: 0.3s;
+}
+
+/* 품절 배지 (빨간색 통일) */
+.soldout-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: #d11a2a;
+  color: white;
+
+  padding: 7px 12px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  z-index: 10;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+
+  pointer-events: none;
+}
+
+/* 상품명 */
 .item p {
   padding: 14px 10px;
-
   font-size: 16px;
 }
 
@@ -258,11 +296,8 @@ nav a:hover {
 
 #loading {
   text-align: center;
-
   padding: 30px;
-
   display: none;
-
   color: #666;
 }
 
@@ -272,7 +307,6 @@ nav a:hover {
 
 #topBtn {
   position: fixed;
-
   right: 20px;
   bottom: 20px;
 
@@ -318,11 +352,8 @@ nav a:hover {
 
   header {
     flex-direction: column;
-
     gap: 12px;
-
     padding: 18px;
-
     text-align: center;
   }
 
@@ -360,14 +391,12 @@ nav a:hover {
   .dropdown-btn {
     width: 145px;
     height: 52px;
-
     font-size: 15px;
   }
 
   .dropdown-menu {
     top: 58px;
     left: 0;
-
     width: 145px;
   }
 
@@ -381,7 +410,6 @@ nav a:hover {
 
   .grid {
     grid-template-columns: repeat(3, 1fr);
-
     gap: 10px;
   }
 
@@ -391,20 +419,24 @@ nav a:hover {
 
   .item p {
     padding: 10px 5px;
-
     font-size: 13px;
-
     line-height: 1.4;
+  }
+
+  /* 모바일 품절 */
+  .soldout-badge {
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
   }
 
   #topBtn {
     width: 46px;
     height: 46px;
-
     right: 15px;
     bottom: 15px;
-
     font-size: 18px;
   }
-
 }

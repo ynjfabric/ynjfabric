@@ -1,3 +1,5 @@
+<!-- co.html -->
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,7 +12,7 @@
 
   <title>다이마루 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="co.css?v=5">
+  <link rel="stylesheet" href="co.css?v=6">
 
   <style>
 
@@ -80,6 +82,39 @@
       border-color:#222;
     }
 
+    /* 품절 */
+    .item-image-wrap{
+      position:relative;
+    }
+
+    .soldout-badge{
+
+      position:absolute;
+
+      top:12px;
+      left:12px;
+
+      background: #d11a2a;
+
+      color:white;
+
+      padding:8px 14px;
+
+      border-radius:999px;
+
+      font-size:14px;
+      font-weight:bold;
+
+      z-index:5;
+
+      backdrop-filter:blur(4px);
+    }
+
+    .soldout-image{
+      filter:grayscale(100%);
+      opacity:0.7;
+    }
+
     /* 이미지 로딩 효과 */
     .item img{
       width:100%;
@@ -111,6 +146,15 @@
       .sort-box select{
         height:46px;
         font-size:14px;
+      }
+
+      .soldout-badge{
+        top:8px;
+        left:8px;
+
+        padding:6px 10px;
+
+        font-size:12px;
       }
 
     }
@@ -390,13 +434,34 @@
         div.className = "item";
 
         div.innerHTML = `
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-            loading="lazy"
-          >
+
+          <div class="item-image-wrap">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              loading="lazy"
+              class="${
+                product.soldOut
+                ? "soldout-image"
+                : ""
+              }"
+            >
+
+            ${
+              product.soldOut
+              ? `
+                <div class="soldout-badge">
+                  품절
+                </div>
+              `
+              : ""
+            }
+
+          </div>
 
           <p>${product.name}</p>
+
         `;
 
         grid.appendChild(div);
