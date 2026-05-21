@@ -25,21 +25,44 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 18px 60px;
-
   background: #222;
   color: white;
 }
 
 nav {
   display: flex;
-  gap: 25px;
+  gap: 12px;
 }
 
-nav a {
-  color: white;
+/* 아이콘 네비 */
+.icon-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
   text-decoration: none;
+
+  background: white;
+  border-radius: 50%;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.08);
 }
 
 /* =========================
@@ -215,6 +238,7 @@ nav a {
 .fabric-sample {
   text-align: center;
   transition: 0.3s;
+  border-radius: 12px;
 }
 
 /* 상품 hover */
@@ -341,13 +365,27 @@ nav a {
 @media (max-width: 768px) {
 
   header {
-    flex-direction: column;
-    gap: 10px;
-    padding: 18px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  header h2 {
+    font-size: 22px;
+    white-space: nowrap;
   }
 
   nav {
-    gap: 16px;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 
   .hero {
@@ -420,4 +458,24 @@ nav a {
   .footer-col p {
     font-size: 13px;
   }
+  .modal-content{
+  text-align:center;
+}
+
+#modalName{
+  margin-top:15px;
+  color:white;
+  font-size:20px;
+  font-weight:600;
+}
+.modal-content{
+  text-align:center;
+}
+
+#modalName{
+  margin-top:15px;
+  color:white;
+  font-size:20px;
+  font-weight:600;
+}
 }

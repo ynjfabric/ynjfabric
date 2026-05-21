@@ -27,9 +27,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 18px 50px;
-
   background: #222;
   color: white;
 }
@@ -38,19 +36,33 @@ header h2 {
   font-size: 30px;
 }
 
-nav {
+/* 아이콘 네비 */
+.icon-nav {
   display: flex;
-  gap: 20px;
+  gap: 12px;
 }
 
-nav a {
-  color: white;
+.icon-btn {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+  color: #222;
+
+  border-radius: 50%;
   text-decoration: none;
+  font-size: 22px;
+
   transition: 0.3s;
 }
 
-nav a:hover {
-  opacity: 0.7;
+.icon-btn:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
 }
 
 /* =========================
@@ -59,16 +71,13 @@ nav a:hover {
 
 .hero {
   height: 320px;
-
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url('./images/back.png')
     center center / cover no-repeat;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   text-align: center;
   color: white;
 }
@@ -90,10 +99,8 @@ nav a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 20px;
   padding: 35px 20px;
-
   flex-wrap: wrap;
 }
 
@@ -107,26 +114,18 @@ nav a:hover {
 .dropdown-btn {
   width: 220px;
   height: 60px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: #f5f5f5;
-
   border: none;
   border-radius: 10px;
-
   font-size: 18px;
   font-weight: 600;
-
   text-decoration: none;
   color: #111;
-
   cursor: pointer;
-
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-
   transition: 0.2s;
 }
 
@@ -145,23 +144,15 @@ nav a:hover {
 
 .dropdown-menu {
   display: none;
-
   position: absolute;
-
   top: 60px;
   left: 0;
-
   width: 220px;
-
   background: white;
-
   border: 1px solid #ddd;
   border-radius: 10px;
-
   overflow: hidden;
-
   z-index: 9999;
-
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
@@ -171,9 +162,7 @@ nav a:hover {
 
 .dropdown-menu a {
   display: block;
-
   padding: 14px 16px;
-
   color: black;
   text-decoration: none;
 }
@@ -215,14 +204,12 @@ nav a:hover {
 .item {
   border: 1px solid #ddd;
   border-radius: 12px;
-
   overflow: hidden;
   background: white;
-
   transition: 0.3s;
   text-align: center;
-
   position: relative;
+  cursor: pointer;
 }
 
 .item:hover {
@@ -235,14 +222,11 @@ nav a:hover {
   position: relative;
 }
 
-/* 이미지 */
 .item img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-
   display: block;
-
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -252,42 +236,106 @@ nav a:hover {
 }
 
 /* =========================
-   🔥 품절 (main.css 통일)
+   품절
 ========================= */
 
-/* 이미지 품절 효과 */
 .soldout-image {
   filter: grayscale(100%) brightness(0.7);
   transform: scale(0.98);
   transition: 0.3s;
 }
 
-/* 품절 배지 (빨간색 통일) */
 .soldout-badge {
   position: absolute;
   top: 12px;
   left: 12px;
 
-  background: #d11a2a;
-  color: white;
+  background-color: #d11a2a !important;
+  color: #fff !important;
 
-  padding: 7px 12px;
+  padding: 8px 14px;
   border-radius: 999px;
 
   font-size: 13px;
   font-weight: 700;
 
-  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+  z-index: 9999;
 
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 
   pointer-events: none;
 }
 
-/* 상품명 */
-.item p {
+/* 상품명 한줄 고정 */
+.product-name {
+  width: 100%;
   padding: 14px 10px;
   font-size: 16px;
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================
+   상품 확대 팝업
+========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content-wrap {
+  text-align: center;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.modal-product-name {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 42px;
+  color: white;
+  cursor: pointer;
+  z-index: 100000;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  opacity: 0.7;
 }
 
 /* =========================
@@ -309,28 +357,19 @@ nav a:hover {
   position: fixed;
   right: 20px;
   bottom: 20px;
-
   width: 52px;
   height: 52px;
-
   border: none;
   border-radius: 50%;
-
   background: #222;
   color: white;
-
   font-size: 22px;
   font-weight: bold;
-
   cursor: pointer;
-
   opacity: 0;
   visibility: hidden;
-
   transition: 0.3s;
-
   z-index: 9999;
-
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
@@ -350,23 +389,27 @@ nav a:hover {
 
 @media (max-width: 768px) {
 
+  /* 모바일도 한 줄 */
   header {
-    flex-direction: column;
-    gap: 12px;
-    padding: 18px;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    text-align: left;
   }
 
   header h2 {
-    font-size: 25px;
+    font-size: 20px;
   }
 
-  nav {
-    gap: 15px;
+  .icon-nav {
+    gap: 8px;
   }
 
-  nav a {
-    font-size: 15px;
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
   }
 
   .hero {
@@ -417,19 +460,39 @@ nav a:hover {
     border-radius: 8px;
   }
 
-  .item p {
+  .product-name {
     padding: 10px 5px;
     font-size: 13px;
-    line-height: 1.4;
+    line-height: 1.2;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* 모바일 품절 */
   .soldout-badge {
     top: 8px;
     left: 8px;
     padding: 6px 10px;
     font-size: 12px;
-    border-radius: 6px;
+    border-radius: 999px;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    max-height: 60vh;
+  }
+
+  .modal-product-name {
+    font-size: 18px;
+    margin-top: 14px;
+    padding: 0 10px;
+  }
+
+  .modal-close {
+    top: 15px;
+    right: 20px;
+    font-size: 34px;
   }
 
   #topBtn {
@@ -438,5 +501,50 @@ nav a:hover {
     right: 15px;
     bottom: 15px;
     font-size: 18px;
+  }
+}
+/* =========================
+   카카오톡 문의 버튼
+========================= */
+
+#kakaoBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 85px; /* topBtn 위쪽 */
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #FEE500;
+  color: #3C1E1E;
+
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+  transition: 0.3s;
+}
+
+#kakaoBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  #kakaoBtn {
+    width: 46px;
+    height: 46px;
+    right: 15px;
+    bottom: 75px;
+    font-size: 20px;
   }
 }
