@@ -36,7 +36,10 @@ header h2 {
   font-size: 30px;
 }
 
-/* 아이콘 네비 */
+/* =========================
+   아이콘 네비
+========================= */
+
 .icon-nav {
   display: flex;
   gap: 12px;
@@ -71,13 +74,16 @@ header h2 {
 
 .hero {
   height: 320px;
+
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url('./images/back.png')
     center center / cover no-repeat;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   text-align: center;
   color: white;
 }
@@ -99,8 +105,10 @@ header h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+
   gap: 20px;
   padding: 35px 20px;
+
   flex-wrap: wrap;
 }
 
@@ -112,20 +120,29 @@ header h2 {
 
 .category,
 .dropdown-btn {
+
   width: 220px;
   height: 60px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   background: #f5f5f5;
+
   border: none;
   border-radius: 10px;
+
   font-size: 18px;
   font-weight: 600;
+
   text-decoration: none;
   color: #111;
+
   cursor: pointer;
+
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
   transition: 0.2s;
 }
 
@@ -144,25 +161,30 @@ header h2 {
 
 .dropdown-menu {
   display: none;
+
   position: absolute;
   top: 60px;
   left: 0;
+
   width: 220px;
+
   background: white;
+
   border: 1px solid #ddd;
   border-radius: 10px;
-  overflow: hidden;
-  z-index: 9999;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
 
-.dropdown-menu.show {
-  display: block;
+  overflow: hidden;
+
+  z-index: 9999;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 .dropdown-menu a {
   display: block;
+
   padding: 14px 16px;
+
   color: black;
   text-decoration: none;
 }
@@ -201,33 +223,47 @@ header h2 {
 }
 
 /* 상품 카드 */
+
 .item {
   border: 1px solid #ddd;
   border-radius: 12px;
+
   overflow: hidden;
+
   background: white;
+
   transition: 0.3s;
+
   text-align: center;
+
   position: relative;
+
   cursor: pointer;
 }
 
 .item:hover {
   transform: translateY(-5px);
+
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* 이미지 */
+
 .item-image-wrap {
   position: relative;
 }
 
 .item img {
   width: 100%;
+
   aspect-ratio: 1 / 1;
+
   object-fit: cover;
+
   display: block;
+
   opacity: 0;
+
   transition: opacity 0.3s ease;
 }
 
@@ -242,40 +278,42 @@ header h2 {
 .soldout-image {
   filter: grayscale(100%) brightness(0.7);
   transform: scale(0.98);
-  transition: 0.3s;
 }
 
 .soldout-badge {
+
   position: absolute;
+
   top: 12px;
   left: 12px;
 
-  background-color: #d11a2a !important;
-  color: #fff !important;
+  background: #d11a2a;
+  color: white;
 
   padding: 8px 14px;
+
   border-radius: 999px;
 
   font-size: 13px;
   font-weight: 700;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  line-height: 1;
-  z-index: 9999;
+  z-index: 20;
 
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 
   pointer-events: none;
 }
 
-/* 상품명 한줄 고정 */
+/* 상품명 */
+
 .product-name {
+
   width: 100%;
+
   padding: 14px 10px;
+
   font-size: 16px;
+
   text-align: center;
 
   white-space: nowrap;
@@ -284,19 +322,19 @@ header h2 {
 }
 
 /* =========================
-   상품 확대 팝업
-========================= */
-
-/* =========================
-   상품 확대 팝업
+   상품 팝업
 ========================= */
 
 .modal {
+
   display: none;
+
   position: fixed;
-  z-index: 99999;
   inset: 0;
-  background: rgba(0, 0, 0, 0.88);
+
+  z-index: 99999;
+
+  background: rgba(0,0,0,0.88);
 
   justify-content: center;
   align-items: center;
@@ -308,109 +346,184 @@ header h2 {
   display: flex;
 }
 
-/* 전체 박스 */
 .modal-content-wrap {
 
   width: 100%;
   max-width: 1200px;
 
   background: white;
-  border-radius: 20px;
 
-  overflow: hidden;
+  border-radius: 22px;
 
   display: flex;
   gap: 30px;
+
+  overflow: hidden;
 
   padding: 30px;
 
   position: relative;
 }
 
-/* 이미지 영역 */
+/* 왼쪽 이미지 */
+
 .modal-left {
   flex: 1;
   min-width: 0;
 }
 
 .modal-image {
+
   width: 100%;
   max-height: 75vh;
 
   object-fit: contain;
 
   border-radius: 14px;
+
   background: #f7f7f7;
 }
 
-/* 정보 영역 */
+/* 오른쪽 정보 */
+
 .modal-right {
   width: 380px;
+}
+
+/* 상단 */
+
+.modal-top {
 
   display: flex;
-  flex-direction: column;
 
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  margin-bottom: 24px;
 }
+
+.modal-top-left {
+  flex: 1;
+}
+
+/* 상품명 */
 
 .modal-product-name {
+
   font-size: 30px;
   font-weight: 700;
+
   color: #111;
 
-  margin-bottom: 25px;
   line-height: 1.3;
+
+  word-break: keep-all;
 }
 
+/* 문의 버튼 */
+
+.modal-kakao-btn {
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 18px;
+
+  background: #FEE500;
+  color: #3C1E1E;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  transition: 0.2s;
+}
+
+.modal-kakao-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* 상세 정보 */
+
 .modal-detail-box {
+
   display: flex;
   flex-direction: column;
+
   gap: 14px;
 }
 
 .modal-detail-item {
+
   padding-bottom: 12px;
+
   border-bottom: 1px solid #eee;
 }
 
 .modal-detail-label {
+
   font-size: 13px;
+
   color: #777;
+
   margin-bottom: 5px;
 }
 
 .modal-detail-value {
+
   font-size: 17px;
-  color: #222;
   font-weight: 600;
+
+  color: #222;
+
   line-height: 1.4;
 }
 
+/* 설명 */
+
 .modal-description {
+
   margin-top: 20px;
 
   padding: 16px;
 
   background: #f8f8f8;
+
   border-radius: 12px;
 
   font-size: 14px;
   line-height: 1.7;
+
   color: #444;
 
   white-space: pre-line;
 }
 
 /* 닫기 버튼 */
+
 .modal-close {
+
   position: absolute;
+
   top: 18px;
   right: 24px;
 
   font-size: 42px;
+
   color: #111;
 
   cursor: pointer;
+
   z-index: 100000;
 
   line-height: 1;
@@ -418,55 +531,6 @@ header h2 {
 
 .modal-close:hover {
   opacity: 0.7;
-}
-
-/* 모바일 */
-@media (max-width: 768px) {
-
-  .modal {
-    padding: 12px;
-    align-items: flex-start;
-    overflow-y: auto;
-  }
-
-  .modal-content-wrap {
-
-    flex-direction: column;
-
-    gap: 18px;
-
-    padding: 18px;
-
-    margin-top: 40px;
-  }
-
-  .modal-right {
-    width: 100%;
-  }
-
-  .modal-image {
-    max-height: 45vh;
-  }
-
-  .modal-product-name {
-    font-size: 22px;
-    margin-bottom: 18px;
-  }
-
-  .modal-detail-value {
-    font-size: 15px;
-  }
-
-  .modal-description {
-    font-size: 13px;
-  }
-
-  .modal-close {
-    top: 10px;
-    right: 16px;
-    font-size: 34px;
-  }
-
 }
 
 /* =========================
@@ -485,22 +549,33 @@ header h2 {
 ========================= */
 
 #topBtn {
+
   position: fixed;
+
   right: 20px;
   bottom: 20px;
+
   width: 52px;
   height: 52px;
+
   border: none;
   border-radius: 50%;
+
   background: #222;
   color: white;
+
   font-size: 22px;
   font-weight: bold;
+
   cursor: pointer;
+
   opacity: 0;
   visibility: hidden;
+
   transition: 0.3s;
+
   z-index: 9999;
+
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
@@ -515,18 +590,59 @@ header h2 {
 }
 
 /* =========================
+   카카오 버튼
+========================= */
+
+#kakaoBtn {
+
+  position: fixed;
+
+  right: 20px;
+  bottom: 85px;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #FEE500;
+  color: #3C1E1E;
+
+  text-decoration: none;
+
+  font-size: 24px;
+  font-weight: bold;
+
+  z-index: 9999;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+  transition: 0.3s;
+}
+
+#kakaoBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* =========================
    모바일
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
 
-  /* 모바일도 한 줄 */
   header {
+
     flex-direction: row;
+
     justify-content: space-between;
     align-items: center;
+
     padding: 14px 16px;
-    text-align: left;
   }
 
   header h2 {
@@ -563,15 +679,16 @@ header h2 {
 
   .category,
   .dropdown-btn {
+
     width: 145px;
     height: 52px;
+
     font-size: 15px;
   }
 
   .dropdown-menu {
-    top: 58px;
-    left: 0;
     width: 145px;
+    top: 58px;
   }
 
   .page-title h2 {
@@ -592,90 +709,102 @@ header h2 {
   }
 
   .product-name {
-    padding: 10px 5px;
-    font-size: 13px;
-    line-height: 1.2;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding: 10px 5px;
+
+    font-size: 13px;
+
+    line-height: 1.2;
   }
 
   .soldout-badge {
+
     top: 8px;
     left: 8px;
+
     padding: 6px 10px;
+
     font-size: 12px;
-    border-radius: 999px;
+  }
+
+  /* 모달 */
+
+  .modal {
+    padding: 12px;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .modal-content-wrap {
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 18px;
+
+    margin-top: 40px;
+  }
+
+  .modal-right {
+    width: 100%;
   }
 
   .modal-image {
-    max-width: 100%;
-    max-height: 60vh;
+    max-height: 45vh;
+  }
+
+  .modal-top {
+    margin-bottom: 18px;
   }
 
   .modal-product-name {
-    font-size: 18px;
-    margin-top: 14px;
-    padding: 0 10px;
+    font-size: 22px;
+  }
+
+  .modal-kakao-btn {
+
+    padding: 8px 14px;
+
+    font-size: 13px;
+  }
+
+  .modal-detail-value {
+    font-size: 15px;
+  }
+
+  .modal-description {
+    font-size: 13px;
   }
 
   .modal-close {
-    top: 15px;
-    right: 20px;
+
+    top: 10px;
+    right: 16px;
+
     font-size: 34px;
   }
 
   #topBtn {
+
     width: 46px;
     height: 46px;
+
     right: 15px;
     bottom: 15px;
+
     font-size: 18px;
   }
-}
-/* =========================
-   카카오톡 문의 버튼
-========================= */
 
-#kakaoBtn {
-  position: fixed;
-  right: 20px;
-  bottom: 85px; /* topBtn 위쪽 */
-
-  width: 52px;
-  height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-  background: #FEE500;
-  color: #3C1E1E;
-
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: bold;
-
-  z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  transition: 0.3s;
-}
-
-#kakaoBtn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-}
-
-/* 모바일 */
-@media (max-width: 768px) {
   #kakaoBtn {
+
     width: 46px;
     height: 46px;
+
     right: 15px;
     bottom: 75px;
+
     font-size: 20px;
   }
+
 }

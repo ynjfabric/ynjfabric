@@ -418,7 +418,7 @@ async function loadProducts(){
     const q =
       query(
         collection(db, "products"),
-        where("category", "==", "co")
+        where("category", "==", "ra")
       );
 
     const querySnapshot =
@@ -767,14 +767,24 @@ document
       >
 
     </div>
-
+<div class="modal-right">
     <!-- 오른쪽 정보 -->
-    <div class="modal-right">
+    <div class="modal-top">
 
-      <h2
-        id="modalProductName"
-        class="modal-product-name"
-      ></h2>
+    <h2
+      id="modalProductName"
+      class="modal-product-name"
+    ></h2>
+
+    <a
+      href="https://open.kakao.com/o/smrFUTti"
+      target="_blank"
+      class="modal-kakao-btn"
+    >
+      💬 문의
+    </a>
+
+  </div>
 
       <div class="modal-detail-box">
 
@@ -840,7 +850,7 @@ document
     </div>
 
   </div>
-
+</div>
 </div>
 
 </body>
