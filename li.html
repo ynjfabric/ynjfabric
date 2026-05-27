@@ -418,7 +418,7 @@ async function loadProducts(){
     const q =
       query(
         collection(db, "products"),
-        where("category", "==", "li")
+        where("category", "==", "de")
       );
 
     const querySnapshot =
@@ -492,6 +492,7 @@ function sortProducts(type){
   });
 
 }
+
 function renderProducts(reset = true){
 
   if(reset){
@@ -699,7 +700,29 @@ document.addEventListener("click", function(e){
 
   const product =
     filteredProducts[index];
+setTimeout(() => {
 
+  const copyBtn =
+    document.getElementById("copyBtn");
+
+  if(copyBtn){
+
+    copyBtn.onclick = () => {
+
+      const text = `
+상품명 : ${product.name || "-"}
+색상 : ${product.color || "-"}
+`;
+
+      navigator.clipboard.writeText(text);
+
+      alert("상품 정보가 복사되었습니다.");
+
+    };
+
+  }
+
+}, 0);
   if(!product) return;
 
   document.getElementById("modalImage").src =
@@ -778,10 +801,19 @@ document
     <!-- 오른쪽 정보 -->
     <div class="modal-top">
 
-    <h2
-      id="modalProductName"
-      class="modal-product-name"
-    ></h2>
+  <h2
+    id="modalProductName"
+    class="modal-product-name"
+  ></h2>
+
+  <div class="modal-btn-group">
+
+    <button
+      id="copyBtn"
+      class="modal-copy-btn"
+    >
+      📋 복사
+    </button>
 
     <a
       href="https://open.kakao.com/o/smrFUTti"
@@ -792,6 +824,8 @@ document
     </a>
 
   </div>
+
+</div>
 
       <div class="modal-detail-box">
 
