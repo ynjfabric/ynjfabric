@@ -5,12 +5,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>면 | Y&J Fabric</title>
 
-  <link rel="stylesheet" href="co.css?v=7">
+  <link rel="stylesheet" href="co.css?v=8">
 
   <style>
+
     .search-wrap{
       width:100%;
       max-width:900px;
@@ -60,7 +63,117 @@
       border-color:#222;
     }
 
+    /* =========================
+       상품 팝업
+    ========================= */
+
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.85);
+      z-index:99999;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .modal.show{
+      display:flex;
+    }
+
+    .modal-content-wrap{
+      width:100%;
+      max-width:1200px;
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      display:flex;
+      gap:0;
+      max-height:90vh;
+    }
+
+    .modal-left{
+      flex:1;
+      background:#111;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .modal-image{
+      width:100%;
+      max-height:80vh;
+      object-fit:contain;
+      border-radius:12px;
+    }
+
+    .modal-right{
+      width:420px;
+      background:white;
+      padding:35px;
+      overflow-y:auto;
+    }
+
+    .modal-product-name{
+      font-size:32px;
+      margin-bottom:25px;
+      color:#111;
+      line-height:1.3;
+      word-break:keep-all;
+    }
+
+    .modal-detail-box{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-bottom:25px;
+    }
+
+    .modal-detail-item{
+      border-bottom:1px solid #eee;
+      padding-bottom:12px;
+    }
+
+    .modal-detail-label{
+      font-size:13px;
+      color:#888;
+      margin-bottom:5px;
+    }
+
+    .modal-detail-value{
+      font-size:17px;
+      color:#222;
+      font-weight:600;
+      word-break:break-word;
+    }
+
+    .modal-description{
+      font-size:15px;
+      color:#444;
+      line-height:1.8;
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    .modal-close{
+      position:absolute;
+      top:20px;
+      right:30px;
+      color:white;
+      font-size:44px;
+      cursor:pointer;
+      z-index:100000;
+      line-height:1;
+    }
+
+    .modal-close:hover{
+      opacity:0.7;
+    }
+
     @media (max-width:768px){
+
       .search-wrap{
         gap:8px;
       }
@@ -74,23 +187,66 @@
         height:46px;
         font-size:14px;
       }
+
+      .modal-content-wrap{
+        flex-direction:column;
+        max-height:92vh;
+      }
+
+      .modal-left{
+        padding:12px;
+      }
+
+      .modal-image{
+        max-height:45vh;
+      }
+
+      .modal-right{
+        width:100%;
+        padding:22px;
+      }
+
+      .modal-product-name{
+        font-size:24px;
+        margin-bottom:20px;
+      }
+
+      .modal-detail-value{
+        font-size:15px;
+      }
+
+      .modal-description{
+        font-size:14px;
+      }
+
+      .modal-close{
+        top:14px;
+        right:18px;
+        font-size:36px;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <header>
+<header>
 
   <h2>Y&J Fabric</h2>
 
   <nav class="icon-nav">
 
-    <a href="index.html" title="홈" class="icon-btn">
+    <a href="index.html"
+       title="홈"
+       class="icon-btn">
       🏠
     </a>
 
-    <a href="order.html" title="문의" class="icon-btn">
+    <a href="order.html"
+       title="문의"
+       class="icon-btn">
       💬
     </a>
 
@@ -98,68 +254,96 @@
 
 </header>
 
-  <section class="hero">
-    <div class="hero-overlay">
-      <h1>면</h1>
-      <p>Premium Cotton Fabric</p>
-    </div>
-  </section>
+<section class="hero">
 
-  <section class="categories">
+  <div class="hero-overlay">
 
-    <div class="dropdown-category">
-      <div class="category">
-        원단 ▾
-      </div>
+    <h1>면</h1>
 
-      <div class="dropdown-menu">
-        <a href="co.html">면</a>
-        <a href="li.html">린넨</a>
-        <a href="de.html">데님</a>
-        <a href="ra.html">레이온</a>
-        <a href="da.html">다이마루</a>
-      </div>
+
+  </div>
+
+</section>
+
+<section class="categories">
+
+  <div class="dropdown-category">
+
+    <div class="category">
+      원단 ▾
     </div>
 
-    <a href="order.html" class="category">
-      상품 문의
-    </a>
+    <div class="dropdown-menu">
 
-  </section>
+      <a href="co.html">면</a>
+      <a href="li.html">린넨</a>
+      <a href="de.html">데님</a>
+      <a href="ra.html">레이온</a>
+      <a href="da.html">다이마루</a>
 
-  <section class="page-title">
-    <h2>면 상품</h2>
-  </section>
-
-  <div class="search-wrap">
-
-    <div class="search-box">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="상품 검색"
-      >
-    </div>
-
-    <div class="sort-box">
-      <select id="sortSelect">
-        <option value="latest">최신순</option>
-        <option value="name">이름순</option>
-      </select>
     </div>
 
   </div>
 
-  <section class="products">
-    <div class="grid" id="grid"></div>
+  <a href="order.html"
+     class="category">
+    상품 문의
+  </a>
 
-    <div id="loading">
-      로딩중...
-    </div>
-  </section>
+</section>
 
-  <button id="topBtn">↑</button>
-  <a
+<section class="page-title">
+
+  <h2>면 상품</h2>
+
+</section>
+
+<div class="search-wrap">
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="상품 검색"
+    >
+
+  </div>
+
+  <div class="sort-box">
+
+    <select id="sortSelect">
+
+      <option value="latest">
+        최신순
+      </option>
+
+      <option value="name">
+        이름순
+      </option>
+
+    </select>
+
+  </div>
+
+</div>
+
+<section class="products">
+
+  <div class="grid"
+       id="grid"></div>
+
+  <div id="loading">
+    로딩중...
+  </div>
+
+</section>
+
+<button id="topBtn">
+  ↑
+</button>
+
+<a
   href="https://open.kakao.com/o/smrFUTti/"
   target="_blank"
   id="kakaoBtn"
@@ -168,288 +352,496 @@
   💬
 </a>
 
-  <script type="module">
+<script type="module">
 
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      where
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAGNPNq_hkyUL4CRrUCNpMMQA9CmLGZy5o",
+
+  authDomain: "ynjfabrickor.firebaseapp.com",
+
+  projectId: "ynjfabrickor",
+
+  storageBucket: "ynjfabrickor.firebasestorage.app",
+
+  messagingSenderId: "807605740695",
+
+  appId: "1:807605740695:web:4aaa88cf3387266bb635d2"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const grid =
+  document.getElementById("grid");
+
+const loading =
+  document.getElementById("loading");
+
+const topBtn =
+  document.getElementById("topBtn");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const sortSelect =
+  document.getElementById("sortSelect");
+
+let page = 0;
+
+const pageSize = 12;
+
+let products = [];
+
+let filteredProducts = [];
+
+async function loadProducts(){
+
+  try{
+
+    loading.style.display = "block";
+
+    const q =
+      query(
+        collection(db, "products"),
+        where("category", "==", "co")
+      );
+
+    const querySnapshot =
+      await getDocs(q);
+
+    products = [];
+
+    querySnapshot.forEach((doc) => {
+
+      products.push(doc.data());
+
+    });
+
+    filteredProducts = [...products];
+
+    sortProducts("latest");
+
+    if(products.length === 0){
+
+      loading.innerHTML =
+        "등록된 상품이 없습니다.";
+
+      return;
+
     }
-    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAGNPNq_hkyUL4CRrUCNpMMQA9CmLGZy5o",
-      authDomain: "ynjfabrickor.firebaseapp.com",
-      projectId: "ynjfabrickor",
-      storageBucket: "ynjfabrickor.firebasestorage.app",
-      messagingSenderId: "807605740695",
-      appId: "1:807605740695:web:4aaa88cf3387266bb635d2"
-    };
+    renderProducts();
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+  }catch(error){
 
-    const grid = document.getElementById("grid");
-    const loading = document.getElementById("loading");
-    const topBtn = document.getElementById("topBtn");
-    const searchInput = document.getElementById("searchInput");
-    const sortSelect = document.getElementById("sortSelect");
+    console.error(error);
 
-    let page = 0;
-    const pageSize = 12;
+    loading.innerHTML =
+      "상품을 불러오지 못했습니다.";
 
-    let products = [];
-    let filteredProducts = [];
+  }
 
-    async function loadProducts() {
+}
 
-      try {
+function sortProducts(type){
 
-        loading.style.display = "block";
+  if(type === "latest"){
 
-        const q = query(
-          collection(db, "products"),
-          where("category", "==", "co")
-        );
+    filteredProducts.sort((a, b) => {
 
-        const querySnapshot = await getDocs(q);
+      return b.createdAt - a.createdAt;
 
-        products = [];
+    });
 
-        querySnapshot.forEach((doc) => {
-          products.push(doc.data());
-        });
+  }
 
-        filteredProducts = [...products];
+  if(type === "name"){
 
-        sortProducts("latest");
+    filteredProducts.sort((a, b) => {
 
-        if (products.length === 0) {
-          loading.innerHTML = "등록된 상품이 없습니다.";
-          return;
+      return a.name.localeCompare(
+        b.name,
+        "ko"
+      );
+
+    });
+
+  }
+
+}
+
+function renderProducts(reset = true){
+
+  if(reset){
+
+    page = 0;
+
+    grid.innerHTML = "";
+
+  }
+
+  const start =
+    page * pageSize;
+
+  const end =
+    start + pageSize;
+
+  const items =
+    filteredProducts.slice(start, end);
+
+  items.forEach((product, index) => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "item";
+
+    div.dataset.index =
+      start + index;
+
+    div.innerHTML = `
+
+      <div class="item-image-wrap">
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          class="${
+            product.soldOut
+            ? "soldout-image"
+            : ""
+          }"
+        >
+
+        ${
+          product.soldOut
+          ? `
+            <div class="soldout-badge">
+              품절
+            </div>
+          `
+          : ""
         }
 
-        renderProducts();
+      </div>
 
-      } catch (error) {
+      <p class="product-name">
+        ${product.name}
+      </p>
 
-        console.error(error);
-        loading.innerHTML = "상품을 불러오지 못했습니다.";
+    `;
 
-      }
+    grid.appendChild(div);
 
-    }
+  });
 
-    function sortProducts(type){
+  const images =
+    grid.querySelectorAll("img");
 
-      if(type === "latest"){
-        filteredProducts.sort((a, b) => {
-          return b.createdAt - a.createdAt;
-        });
-      }
+  images.forEach((img) => {
 
-      if(type === "name"){
-        filteredProducts.sort((a, b) => {
-          return a.name.localeCompare(
-            b.name,
-            "ko"
-          );
-        });
-      }
+    if(img.complete){
 
-    }
+      img.classList.add("loaded");
 
-    function renderProducts(reset = true) {
+    }else{
 
-      if(reset){
-        page = 0;
-        grid.innerHTML = "";
-      }
+      img.onload = () => {
 
-      const start = page * pageSize;
-      const end = start + pageSize;
+        img.classList.add("loaded");
 
-      const items = filteredProducts.slice(start, end);
-
-      items.forEach(product => {
-
-        const div = document.createElement("div");
-        div.className = "item";
-
-        div.innerHTML = `
-          <div class="item-image-wrap">
-
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-              loading="lazy"
-              class="${
-                product.soldOut
-                ? "soldout-image"
-                : ""
-              }"
-            >
-
-            ${
-              product.soldOut
-              ? `
-                <div class="soldout-badge">
-                  품절
-                </div>
-              `
-              : ""
-            }
-
-          </div>
-
-          <p class="product-name">${product.name}</p>
-        `;
-
-        grid.appendChild(div);
-
-      });
-
-      const images = grid.querySelectorAll("img");
-
-      images.forEach((img) => {
-
-        if(img.complete){
-          img.classList.add("loaded");
-        } else {
-          img.onload = () => {
-            img.classList.add("loaded");
-          };
-        }
-
-      });
-
-      page++;
-
-      if(filteredProducts.length === 0){
-
-        grid.innerHTML = `
-          <p style="
-            width:100%;
-            text-align:center;
-            padding:40px 0;
-            color:#777;
-          ">
-            검색 결과가 없습니다.
-          </p>
-        `;
-
-      }
-
-      loading.style.display = "none";
+      };
 
     }
 
-    searchInput.addEventListener("input", () => {
+  });
 
-      const keyword =
-        searchInput.value
+  page++;
+
+  if(filteredProducts.length === 0){
+
+    grid.innerHTML = `
+
+      <p style="
+        width:100%;
+        text-align:center;
+        padding:40px 0;
+        color:#777;
+      ">
+
+        검색 결과가 없습니다.
+
+      </p>
+
+    `;
+
+  }
+
+  loading.style.display = "none";
+
+}
+
+searchInput.addEventListener("input", () => {
+
+  const keyword =
+    searchInput.value
+    .toLowerCase()
+    .trim();
+
+  filteredProducts =
+    [...products].filter((product) => {
+
+      return product.name
         .toLowerCase()
-        .trim();
-
-      filteredProducts = [...products].filter(product => {
-        return product.name
-          .toLowerCase()
-          .includes(keyword);
-      });
-
-      sortProducts(sortSelect.value);
-      renderProducts(true);
+        .includes(keyword);
 
     });
 
-    sortSelect.addEventListener("change", () => {
+  sortProducts(sortSelect.value);
 
-      sortProducts(sortSelect.value);
-      renderProducts(true);
+  renderProducts(true);
 
-    });
+});
 
-    window.addEventListener("scroll", () => {
+sortSelect.addEventListener("change", () => {
 
-      if (
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 150
-      ) {
-        if (
-          page * pageSize <
-          filteredProducts.length
-        ) {
-          renderProducts(false);
-        }
-      }
+  sortProducts(sortSelect.value);
 
-      if (window.scrollY > 300) {
-        topBtn.classList.add("show");
-      } else {
-        topBtn.classList.remove("show");
-      }
+  renderProducts(true);
 
-    });
+});
 
-    topBtn.addEventListener("click", () => {
+window.addEventListener("scroll", () => {
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+  if(
 
-    });
+    window.innerHeight +
+    window.scrollY >=
+    document.body.offsetHeight - 150
 
-    loadProducts();
+  ){
 
-  </script>
-<!-- 맨 아래 </body> 바로 위에 추가 -->
+    if(
+
+      page * pageSize <
+      filteredProducts.length
+
+    ){
+
+      renderProducts(false);
+
+    }
+
+  }
+
+  if(window.scrollY > 300){
+
+    topBtn.classList.add("show");
+
+  }else{
+
+    topBtn.classList.remove("show");
+
+  }
+
+});
+
+topBtn.addEventListener("click", () => {
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+});
+
+loadProducts();
+
+/* =========================
+   상품 팝업
+========================= */
+
+document.addEventListener("click", function(e){
+
+  const item =
+    e.target.closest(".item");
+
+  if(!item) return;
+
+  const index =
+    item.dataset.index;
+
+  const product =
+    filteredProducts[index];
+
+  if(!product) return;
+
+  document.getElementById("modalImage").src =
+    product.image || "";
+
+  document.getElementById("modalProductName").textContent =
+    product.name || "-";
+
+  document.getElementById("modalFabricName").textContent =
+    product.fabricName || "-";
+
+  document.getElementById("modalColor").textContent =
+    product.color || "-";
+
+  document.getElementById("modalWidth").textContent =
+    product.width || "-";
+
+  document.getElementById("modalPrice").textContent =
+    product.price || "-";
+
+  document.getElementById("modalDescription").textContent =
+    product.detail || "상세 설명이 없습니다.";
+
+  document
+    .getElementById("imageModal")
+    .classList.add("show");
+
+});
+
+document
+  .querySelector(".modal-close")
+  .addEventListener("click", function(){
+
+    document
+      .getElementById("imageModal")
+      .classList.remove("show");
+
+});
+
+document
+  .getElementById("imageModal")
+  .addEventListener("click", function(e){
+
+    if(e.target === this){
+
+      this.classList.remove("show");
+
+    }
+
+});
+
+</script>
 
 <!-- 상품 확대 팝업 -->
-<div id="imageModal" class="modal">
+<div id="imageModal"
+     class="modal">
 
-  <span class="modal-close">&times;</span>
+  <span class="modal-close">
+    &times;
+  </span>
 
   <div class="modal-content-wrap">
-    <img id="modalImage" class="modal-image" src="" alt="">
-    <p id="modalProductName" class="modal-product-name"></p>
+
+    <!-- 왼쪽 이미지 -->
+    <div class="modal-left">
+
+      <img
+        id="modalImage"
+        class="modal-image"
+        src=""
+        alt=""
+      >
+
+    </div>
+
+    <!-- 오른쪽 정보 -->
+    <div class="modal-right">
+
+      <h2
+        id="modalProductName"
+        class="modal-product-name"
+      ></h2>
+
+      <div class="modal-detail-box">
+
+        <div class="modal-detail-item">
+
+          <div class="modal-detail-label">
+            원단명
+          </div>
+
+          <div
+            id="modalFabricName"
+            class="modal-detail-value"
+          ></div>
+
+        </div>
+
+        <div class="modal-detail-item">
+
+          <div class="modal-detail-label">
+            색상
+          </div>
+
+          <div
+            id="modalColor"
+            class="modal-detail-value"
+          ></div>
+
+        </div>
+
+        <div class="modal-detail-item">
+
+          <div class="modal-detail-label">
+            원단 폭
+          </div>
+
+          <div
+            id="modalWidth"
+            class="modal-detail-value"
+          ></div>
+
+        </div>
+
+        <div class="modal-detail-item">
+
+          <div class="modal-detail-label">
+            3마 기준 가격
+          </div>
+
+          <div
+            id="modalPrice"
+            class="modal-detail-value"
+          ></div>
+
+        </div>
+
+      </div>
+
+      <div
+        id="modalDescription"
+        class="modal-description"
+      ></div>
+
+    </div>
+
   </div>
 
 </div>
 
-<script>
-  // 기존 상품 렌더링 후 카드 클릭 이벤트 연결
-  document.addEventListener("click", function(e) {
-    const item = e.target.closest(".item");
-    if (!item) return;
-
-    const img = item.querySelector("img");
-    const name = item.querySelector(".product-name");
-
-    if (!img || !name) return;
-
-    document.getElementById("modalImage").src = img.src;
-    document.getElementById("modalProductName").textContent = name.textContent;
-
-    document.getElementById("imageModal").classList.add("show");
-  });
-
-  // 닫기 버튼
-  document.querySelector(".modal-close").addEventListener("click", function() {
-    document.getElementById("imageModal").classList.remove("show");
-  });
-
-  // 바깥 클릭 닫기
-  document.getElementById("imageModal").addEventListener("click", function(e) {
-    if (e.target === this) {
-      this.classList.remove("show");
-    }
-  });
-</script>
 </body>
 </html>

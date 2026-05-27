@@ -458,24 +458,132 @@ nav {
   .footer-col p {
     font-size: 13px;
   }
-  .modal-content{
-  text-align:center;
+  /* =========================
+   모달
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:99999;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content-wrap{
+  width:100%;
+  max-width:1100px;
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+
+  display:flex;
+  align-items:stretch;
+}
+
+.modal-left{
+  flex:1;
+  background:#111;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px;
+}
+
+.modal-image{
+  width:100%;
+  max-height:80vh;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+.modal-right{
+  width:380px;
+  background:white;
+  padding:35px;
+  overflow-y:auto;
 }
 
 #modalName{
-  margin-top:15px;
-  color:white;
-  font-size:20px;
-  font-weight:600;
-}
-.modal-content{
-  text-align:center;
+  font-size:30px;
+  color:#111;
+  margin-bottom:30px;
+  line-height:1.4;
+  word-break:keep-all;
 }
 
-#modalName{
-  margin-top:15px;
+.modal-detail-box{
+  border-top:1px solid #eee;
+  padding-top:20px;
+}
+
+.modal-detail-title{
+  font-size:14px;
+  color:#888;
+  margin-bottom:10px;
+}
+
+#modalDetail{
+  font-size:16px;
+  line-height:1.8;
+  color:#333;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:42px;
   color:white;
-  font-size:20px;
-  font-weight:600;
+  cursor:pointer;
+  z-index:100000;
+}
+
+@media (max-width:768px){
+
+  .modal-content-wrap{
+    flex-direction:column;
+    max-height:92vh;
+  }
+
+  .modal-left{
+    padding:15px;
+  }
+
+  .modal-image{
+    max-height:45vh;
+  }
+
+  .modal-right{
+    width:100%;
+    padding:24px;
+  }
+
+  #modalName{
+    font-size:24px;
+    margin-bottom:20px;
+  }
+
+  #modalDetail{
+    font-size:14px;
+  }
+
+  .modal-close{
+    top:15px;
+    right:18px;
+    font-size:36px;
+  }
+
 }
 }

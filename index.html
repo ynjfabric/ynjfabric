@@ -4,11 +4,12 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Y&J Fabric</title>
 
-  <link rel="stylesheet" href="main.css?v=2">
+  <link rel="stylesheet" href="main.css?v=3">
 
   <style>
 
@@ -53,12 +54,14 @@
     }
 
     @media (max-width:768px){
+
       .soldout-badge{
         top:8px;
         left:8px;
         padding:6px 12px;
         font-size:12px;
       }
+
     }
 
     /* =========================
@@ -80,31 +83,118 @@
       display:flex;
     }
 
-    .modal-content{
-      text-align:center;
+    .modal-content-wrap{
+      width:100%;
+      max-width:1100px;
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+
+      display:flex;
+      align-items:stretch;
     }
 
-    .modal img{
-      max-width:90%;
+    .modal-left{
+      flex:1;
+      background:#111;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:20px;
+    }
+
+    .modal-image{
+      width:100%;
       max-height:80vh;
+      object-fit:contain;
       border-radius:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .modal-right{
+      width:380px;
+      background:white;
+      padding:35px;
+      overflow-y:auto;
     }
 
     #modalName{
-      margin-top:15px;
-      color:white;
-      font-size:20px;
-      font-weight:600;
+      font-size:30px;
+      color:#111;
+      margin-bottom:30px;
+      line-height:1.4;
+      word-break:keep-all;
+    }
+
+    .modal-detail-box{
+      border-top:1px solid #eee;
+      padding-top:20px;
+    }
+
+    .modal-detail-title{
+      font-size:14px;
+      color:#888;
+      margin-bottom:10px;
+    }
+
+    #modalDetail{
+      font-size:16px;
+      line-height:1.8;
+      color:#333;
+      white-space:pre-wrap;
+      word-break:break-word;
     }
 
     .modal-close{
       position:absolute;
       top:20px;
       right:25px;
-      font-size:40px;
+      font-size:42px;
       color:white;
       cursor:pointer;
+      z-index:100000;
+    }
+
+    .modal-close:hover{
+      opacity:0.7;
+    }
+
+    @media (max-width:768px){
+
+      .modal-content-wrap{
+        flex-direction:column;
+        max-height:92vh;
+      }
+
+      .modal-left{
+        padding:15px;
+      }
+
+      .modal-image{
+        max-height:45vh;
+      }
+
+      .modal-right{
+        width:100%;
+        padding:24px;
+      }
+
+      #modalName{
+        font-size:24px;
+        margin-bottom:20px;
+      }
+
+      #modalDetail{
+        font-size:14px;
+      }
+
+      .modal-close{
+        top:15px;
+        right:18px;
+        font-size:36px;
+      }
+
     }
 
   </style>
@@ -115,39 +205,62 @@
 
   <!-- 헤더 -->
   <header>
+
     <h2>Y&J Fabric</h2>
 
     <nav class="icon-nav">
-      <a href="index.html" class="icon-btn">🏠</a>
-      <a href="order.html" class="icon-btn">💬</a>
+
+      <a href="index.html"
+         class="icon-btn">
+        🏠
+      </a>
+
+      <a href="order.html"
+         class="icon-btn">
+        💬
+      </a>
+
     </nav>
+
   </header>
 
   <!-- 메인 -->
   <section class="hero">
+
     <div class="hero-overlay">
+
       <h1>좋은 품질 착한 가격</h1>
+
     </div>
+
   </section>
 
   <!-- 카테고리 -->
   <section class="categories">
 
     <div class="dropdown-category">
-      <button class="category dropdown-btn" type="button">
+
+      <button
+        class="category dropdown-btn"
+        type="button"
+      >
         원단 ▾
       </button>
 
       <div class="dropdown-menu">
+
         <a href="co.html">면</a>
         <a href="li.html">린넨</a>
         <a href="de.html">데님</a>
         <a href="ra.html">레이온</a>
         <a href="da.html">다이마루</a>
+
       </div>
+
     </div>
 
-    <a href="order.html" class="category">
+    <a href="order.html"
+       class="category">
       상품 문의
     </a>
 
@@ -158,18 +271,57 @@
 
     <h2>메인 상품</h2>
 
-    <div class="product-grid" id="productGrid"></div>
+    <div
+      class="product-grid"
+      id="productGrid"
+    ></div>
 
   </section>
 
   <!-- 모달 -->
-  <div class="modal" id="imageModal">
+  <div
+    class="modal"
+    id="imageModal"
+  >
 
-    <span class="modal-close" id="modalClose">&times;</span>
+    <span
+      class="modal-close"
+      id="modalClose"
+    >
+      &times;
+    </span>
 
-    <div class="modal-content">
-      <img id="modalImg" src="" alt="">
-      <p id="modalName"></p>
+    <div class="modal-content-wrap">
+
+      <!-- 왼쪽 이미지 -->
+      <div class="modal-left">
+
+        <img
+          id="modalImg"
+          src=""
+          alt=""
+          class="modal-image"
+        >
+
+      </div>
+
+      <!-- 오른쪽 정보 -->
+      <div class="modal-right">
+
+        <h2 id="modalName"></h2>
+
+        <div class="modal-detail-box">
+
+          <div class="modal-detail-title">
+            상세 정보
+          </div>
+
+          <div id="modalDetail"></div>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -177,107 +329,195 @@
   <!-- Firebase -->
   <script type="module">
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where, limit } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      where,
+      limit
+    }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
     const firebaseConfig = {
+
       apiKey: "AIzaSyAGNPNq_hkyUL4CRrUCNpMMQA9CmLGZy5o",
+
       authDomain: "ynjfabrickor.firebaseapp.com",
+
       projectId: "ynjfabrickor",
+
       storageBucket: "ynjfabrickor.firebasestorage.app",
+
       messagingSenderId: "807605740695",
+
       appId: "1:807605740695:web:4aaa88cf3387266bb635d2"
+
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const app =
+      initializeApp(firebaseConfig);
 
-    const productGrid = document.getElementById("productGrid");
+    const db =
+      getFirestore(app);
 
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImg");
-    const modalName = document.getElementById("modalName");
-    const modalClose = document.getElementById("modalClose");
+    const productGrid =
+      document.getElementById("productGrid");
+
+    const modal =
+      document.getElementById("imageModal");
+
+    const modalImg =
+      document.getElementById("modalImg");
+
+    const modalName =
+      document.getElementById("modalName");
+
+    const modalDetail =
+      document.getElementById("modalDetail");
+
+    const modalClose =
+      document.getElementById("modalClose");
 
     async function loadMainProducts(){
 
       const q = query(
+
         collection(db, "products"),
+
         where("category", "==", "ma"),
+
         limit(5)
+
       );
 
-      const snapshot = await getDocs(q);
+      const snapshot =
+        await getDocs(q);
 
       productGrid.innerHTML = "";
 
       snapshot.forEach((doc) => {
 
-        const product = doc.data();
+        const product =
+          doc.data();
 
-        const div = document.createElement("div");
-        div.className = "fabric-sample";
+        const div =
+          document.createElement("div");
+
+        div.className =
+          "fabric-sample";
 
         div.innerHTML = `
+
           <div class="main-product-image-wrap">
 
-            ${product.soldOut ? `<div class="soldout-badge">품절</div>` : ""}
+            ${
+              product.soldOut
+              ? `
+                <div class="soldout-badge">
+                  품절
+                </div>
+              `
+              : ""
+            }
 
             <img
               src="${product.image}"
               alt="${product.name}"
-              class="main-product-image ${product.soldOut ? "soldout-image" : ""}"
+              class="
+                main-product-image
+                ${
+                  product.soldOut
+                  ? "soldout-image"
+                  : ""
+                }
+              "
               loading="lazy"
             >
 
           </div>
 
           <p>${product.name}</p>
+
         `;
 
-        // ⭐ co.html 방식: 데이터 직접 묶기
-        div.dataset.name = product.name;
-        div.dataset.image = product.image;
+        // 데이터 저장
+        div.dataset.name =
+          product.name || "";
+
+        div.dataset.image =
+          product.image || "";
+
+        div.dataset.detail =
+          product.detail || "";
 
         productGrid.appendChild(div);
 
       });
 
-      // 이미지 로딩 + 클릭 이벤트 (co 방식)
-      document.querySelectorAll(".fabric-sample").forEach((item) => {
+      // 이미지 로딩 + 클릭 이벤트
+      document
+        .querySelectorAll(".fabric-sample")
+        .forEach((item) => {
 
-        const img = item.querySelector("img");
+          const img =
+            item.querySelector("img");
 
-        if(img.complete){
-          img.classList.add("loaded");
-        } else {
-          img.onload = () => img.classList.add("loaded");
-        }
+          if(img.complete){
 
-        img.addEventListener("click", () => {
+            img.classList.add("loaded");
 
-          modalImg.src = img.src;
-          modalName.textContent = item.dataset.name;
+          }else{
 
-          modal.classList.add("show");
+            img.onload = () => {
+
+              img.classList.add("loaded");
+
+            };
+
+          }
+
+          img.addEventListener("click", () => {
+
+            modalImg.src =
+              item.dataset.image;
+
+            modalName.textContent =
+              item.dataset.name;
+
+            modalDetail.textContent =
+              item.dataset.detail ||
+              "상세 정보가 없습니다.";
+
+            modal.classList.add("show");
+
+          });
 
         });
-
-      });
 
     }
 
     loadMainProducts();
 
-    // 닫기
+    // 닫기 버튼
     modalClose.addEventListener("click", () => {
+
       modal.classList.remove("show");
+
     });
 
+    // 바깥 클릭 닫기
     modal.addEventListener("click", (e) => {
+
       if(e.target === modal){
+
         modal.classList.remove("show");
+
       }
+
     });
 
   </script>
