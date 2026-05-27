@@ -460,31 +460,38 @@ async function loadProducts(){
 
 function sortProducts(type){
 
-  if(type === "latest"){
+  filteredProducts.sort((a, b) => {
 
-    filteredProducts.sort((a, b) => {
+    // 품절 상품 맨 아래
+    if(!!a.soldOut !== !!b.soldOut){
+      return a.soldOut ? 1 : -1;
+    }
 
-      return b.createdAt - a.createdAt;
+    // 최신순
+    if(type === "latest"){
 
-    });
+      const aTime = a.createdAt || 0;
+      const bTime = b.createdAt || 0;
 
-  }
+      return bTime - aTime;
 
-  if(type === "name"){
+    }
 
-    filteredProducts.sort((a, b) => {
+    // 이름순
+    if(type === "name"){
 
-      return a.name.localeCompare(
-        b.name,
+      return (a.name || "").localeCompare(
+        b.name || "",
         "ko"
       );
 
-    });
+    }
 
-  }
+    return 0;
+
+  });
 
 }
-
 function renderProducts(reset = true){
 
   if(reset){
