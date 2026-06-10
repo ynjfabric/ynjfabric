@@ -332,7 +332,15 @@
     </a>
 
   </section>
+<section class="main-slider">
+ <h2 class="slider-title">
+    🔥 조회수가 높은 상품 TOP 10
+  </h2>
+  <div id="sliderTrack">
 
+  </div>
+
+</section>
   <!-- 상품 -->
   <section class="products">
 
@@ -414,12 +422,13 @@
     from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
     import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      where,
-      limit
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where,
+    orderBy,
+    limit
     }
     from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
@@ -447,7 +456,12 @@
 
     const productGrid =
       document.getElementById("productGrid");
+const sliderTrack =
+  document.getElementById("sliderTrack");
 
+let sliderProducts = [];
+
+let currentSlide = 0;
     const modal =
       document.getElementById("imageModal");
 
@@ -462,19 +476,62 @@
 
     const modalClose =
       document.getElementById("modalClose");
+async function loadPopularSlider(){
 
+  const q = query(
+
+    collection(db, "products"),
+
+    orderBy("viewCount", "desc"),
+
+    limit(10)
+
+  );
+
+  const snapshot =
+    await getDocs(q);
+
+  sliderProducts = [];
+
+  snapshot.forEach((doc) => {
+
+    sliderProducts.push(doc.data());
+
+  });
+
+  sliderTrack.innerHTML =
+    sliderProducts.map((product,index)=>`
+
+      <div class="
+        slide-item
+        ${index===0 ? "active" : ""}
+      ">
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+        >
+
+        <div class="slide-caption">
+          ${product.name}
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
     async function loadMainProducts(){
 
-      const q = query(
+       const q = query(
 
-        collection(db, "products"),
+       collection(db, "products"),
 
-        where("category", "==", "ma"),
+       where("category", "==", "ma"),
 
-        limit(5)
+       limit(5)
 
-      );
-
+       );
       const snapshot =
         await getDocs(q);
 
@@ -484,7 +541,7 @@
 
         const product =
           doc.data();
-
+        sliderProducts.push(product);
         const div =
           document.createElement("div");
 
@@ -538,6 +595,26 @@
         productGrid.appendChild(div);
 
       });
+      sliderTrack.innerHTML =
+  sliderProducts.map((product,index)=>`
+
+    <div class="
+      slide-item
+      ${index===0 ? "active" : ""}
+    ">
+
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+      >
+
+      <div class="slide-caption">
+        ${product.name}
+      </div>
+
+    </div>
+
+  `).join("");
 
       // 이미지 로딩 + 클릭 이벤트
       document
@@ -580,7 +657,29 @@
         });
 
     }
+setInterval(()=>{
 
+  const slides =
+    document.querySelectorAll(".slide-item");
+
+  if(slides.length===0) return;
+
+  slides[currentSlide]
+    .classList.remove("active");
+
+  currentSlide++;
+
+  if(currentSlide >= slides.length){
+
+    currentSlide = 0;
+
+  }
+
+  slides[currentSlide]
+    .classList.add("active");
+
+},3000); 
+    loadPopularSlider();
     loadMainProducts();
 
     // 닫기 버튼

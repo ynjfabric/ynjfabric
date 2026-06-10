@@ -451,11 +451,64 @@ nav{
 .modal-close:hover{
   opacity:0.7;
 }
-
+.slider-title{
+  text-align:center;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:25px;
+  color:#222;
+}
 /* =========================
    모바일
 ========================= */
+/* =========================
+   메인 슬라이더
+========================= */
 
+.main-slider{
+  max-width:500px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+#sliderTrack{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+}
+
+.slide-item{
+  display:none;
+  position:relative;
+}
+
+.slide-item.active{
+  display:block;
+}
+
+.slide-item img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  border-radius:20px;
+}
+
+.slide-caption{
+  position:absolute;
+  left:30px;
+  bottom:30px;
+
+  background:rgba(0,0,0,.55);
+  color:white;
+
+  padding:15px 25px;
+
+  border-radius:12px;
+
+  font-size:24px;
+  font-weight:bold;
+}
 @media (max-width:768px){
 
   header{
@@ -576,5 +629,21 @@ nav{
     right:16px;
     font-size:34px;
   }
+.slide-item img{
+  aspect-ratio:1/1;
+}
 
+.slide-caption{
+  font-size:18px;
+  left:15px;
+  bottom:15px;
+}
+@media (max-width:768px){
+
+  .slider-title{
+    font-size:22px;
+    margin-bottom:15px;
+  }
+
+}
 }
