@@ -768,7 +768,17 @@ setTimeout(() => {
 
   document.getElementById("modalPrice").textContent =
     product.price || "-";
+document.getElementById("modalThickness").textContent =
+  product.thickness || "-";
 
+document.getElementById("modalStretch").textContent =
+  product.stretch || "-";
+
+document.getElementById("modalSeeThrough").textContent =
+  product.seeThrough || "-";
+
+document.getElementById("modalTouch").textContent =
+  product.touch || "-";
   document.getElementById("modalDescription").textContent =
     product.detail || "상세 설명이 없습니다.";
 
@@ -906,7 +916,45 @@ document
           ></div>
 
         </div>
+<div class="modal-detail-item">
+  <div class="modal-detail-label">
+    두께
+  </div>
+  <div
+    id="modalThickness"
+    class="modal-detail-value"
+  ></div>
+</div>
 
+<div class="modal-detail-item">
+  <div class="modal-detail-label">
+    신축성
+  </div>
+  <div
+    id="modalStretch"
+    class="modal-detail-value"
+  ></div>
+</div>
+
+<div class="modal-detail-item">
+  <div class="modal-detail-label">
+    비침
+  </div>
+  <div
+    id="modalSeeThrough"
+    class="modal-detail-value"
+  ></div>
+</div>
+
+<div class="modal-detail-item">
+  <div class="modal-detail-label">
+    촉감
+  </div>
+  <div
+    id="modalTouch"
+    class="modal-detail-value"
+  ></div>
+</div>
       </div>
 
       <div
