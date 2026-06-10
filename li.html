@@ -317,7 +317,9 @@
       <option value="latest">
         최신순
       </option>
-
+      <option value="popular">
+        인기순
+      </option>
       <option value="name">
         이름순
       </option>
@@ -362,7 +364,10 @@ import {
   collection,
   getDocs,
   query,
-  where
+  where,
+  doc,
+  updateDoc,
+  increment
 }
 from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
@@ -418,7 +423,7 @@ async function loadProducts(){
     const q =
       query(
         collection(db, "products"),
-        where("category", "==", "de")
+        where("category", "==", "li")
       );
 
     const querySnapshot =
@@ -426,11 +431,14 @@ async function loadProducts(){
 
     products = [];
 
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((docSnap) => {
 
-      products.push(doc.data());
+  products.push({
+    id: docSnap.id,
+    ...docSnap.data()
+  });
 
-    });
+});
 
     filteredProducts = [...products];
 
@@ -476,7 +484,13 @@ function sortProducts(type){
       return bTime - aTime;
 
     }
+// 인기순
+    if(type === "popular"){
 
+  return (b.viewCount || 0)
+       - (a.viewCount || 0);
+
+}
     // 이름순
     if(type === "name"){
 
@@ -700,7 +714,19 @@ document.addEventListener("click", function(e){
 
   const product =
     filteredProducts[index];
+    if(product.id){
+
+  updateDoc(
+    doc(db,"products",product.id),
+    {
+      viewCount: increment(1)
+    }
+  );
+
+}
+    
 setTimeout(() => {
+
 
   const copyBtn =
     document.getElementById("copyBtn");
