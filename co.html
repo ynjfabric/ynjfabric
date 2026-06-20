@@ -959,56 +959,37 @@ function createGroup(
   items.forEach(item => {
 
     const chip =
-      document.createElement(
-        "div"
-      );
+  document.createElement("div");
 
-    chip.className =
-      "filter-chip";
+chip.className =
+  "filter-chip";
 
-    chip.textContent =
-      item;
-
-    if(
-      selectedFilters[key]
-      .includes(item)
-    ){
-      chip.classList.add(
-        "active"
-      );
-    }
+chip.innerHTML = `
+  <input type="checkbox"
+         ${selectedFilters[key].includes(item) ? "checked" : ""}>
+  <span>${item}</span>
+`;
 
     chip.onclick = () => {
 
-      chip.classList.toggle(
-        "active"
-      );
+  const checkbox =
+    chip.querySelector("input")
+  .addEventListener("change", (e) => {
 
-      if(
-        chip.classList.contains(
-          "active"
-        )
-      ){
-
-        if(
-          !selectedFilters[key]
-            .includes(item)
-        ){
-          selectedFilters[key]
-            .push(item);
-        }
-
-      }else{
-
-        selectedFilters[key] =
-          selectedFilters[key]
-            .filter(
-              v => v !== item
-            );
-
+    if (e.target.checked) {
+      if (!selectedFilters[key].includes(item)) {
+        selectedFilters[key].push(item);
       }
+    } else {
+      selectedFilters[key] =
+        selectedFilters[key].filter(
+          v => v !== item
+        );
+    }
 
-    };
+});
+
+};
 
     wrap.appendChild(chip);
 
