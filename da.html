@@ -353,6 +353,12 @@
 >
   💬
 </a>
+<button id="filterBtn"
+        class="filter-btn">
+
+  필터
+
+</button>
 
 <script type="module">
 
@@ -411,9 +417,56 @@ let page = 0;
 const pageSize = 12;
 
 let products = [];
+let selectedFilters = {
+  color: [],
+  thickness: [],
+  stretch: [],
+  seeThrough: [],
+  touch: []
+};
+const filterOptions = {
+  color: [
+    "화이트",
+    "아이보리",
+    "베이지",
+    "브라운",
+    "그레이",
+    "블랙",
+    "레드",
+    "핑크",
+    "오렌지",
+    "옐로우",
+    "그린",
+    "블루",
+    "네이비",
+    "퍼플",
+    "멀티"
+  ],
 
+  thickness: [
+    "얇음",
+    "보통",
+    "두꺼움"
+  ],
+
+  stretch: [
+    "없음",
+    "약간",
+    "좋음"
+  ],
+
+  seeThrough: [
+    "없음",
+    "약간",
+    "있음"
+  ],
+  touch: [
+  "부드러움",
+  "보통",
+  "거침"
+  ]
+};
 let filteredProducts = [];
-
 async function loadProducts(){
 
   try{
@@ -452,7 +505,7 @@ async function loadProducts(){
       return;
 
     }
-
+    renderFilterModal();
     renderProducts();
 
   }catch(error){
@@ -485,7 +538,7 @@ function sortProducts(type){
 
     }
 // 인기순
-    if(type === "popular"){
+  if(type === "popular"){
 
   return (b.viewCount || 0)
        - (a.viewCount || 0);
@@ -538,36 +591,43 @@ function renderProducts(reset = true){
 
     div.innerHTML = `
 
-      <div class="item-image-wrap">
+  <div class="main-product-image-wrap">
 
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-          class="${
-            product.soldOut
-            ? "soldout-image"
-            : ""
-          }"
-        >
+    ${
+      product.soldOut
+      ? `
+        <div class="soldout-badge">
+          품절
+        </div>
+      `
+      : ""
+    }
 
+    <img
+      src="${product.image}"
+      alt="${product.name}"
+      class="
+        main-product-image
         ${
           product.soldOut
-          ? `
-            <div class="soldout-badge">
-              품절
-            </div>
-          `
+          ? "soldout-image"
           : ""
         }
+      "
+      loading="lazy"
+    >
 
-      </div>
+  </div>
 
-      <p class="product-name">
-        ${product.name}
-      </p>
+  <p class="product-name">
+    ${product.name}
+  </p>
 
-    `;
+  <p class="product-price">
+    ₩${Number(product.price || 0).toLocaleString()}
+  </p>
+
+`;
 
     grid.appendChild(div);
 
@@ -626,14 +686,7 @@ searchInput.addEventListener("input", () => {
     .toLowerCase()
     .trim();
 
-  filteredProducts =
-    [...products].filter((product) => {
-
-      return product.name
-        .toLowerCase()
-        .includes(keyword);
-
-    });
+  applyFilters();
 
   sortProducts(sortSelect.value);
 
@@ -809,6 +862,273 @@ document
     }
 
 });
+/* =========================
+   필터
+========================= */
+
+document
+  .getElementById("filterBtn")
+  .addEventListener("click", () => {
+
+    renderFilterModal();
+
+    document
+      .getElementById("filterModal")
+      .classList.add("show");
+
+  });
+
+document
+.getElementById("closeFilter")
+.onclick = () => {
+
+  document
+    .getElementById("filterModal")
+    .classList.remove("show");
+
+};
+
+function renderFilterModal(){
+
+  createGroup(
+    "colorGroup",
+    "색상",
+    "color"
+  );
+
+  createGroup(
+    "thicknessGroup",
+    "두께",
+    "thickness"
+  );
+
+  createGroup(
+    "stretchGroup",
+    "신축성",
+    "stretch"
+  );
+
+  createGroup(
+    "seeThroughGroup",
+    "비침",
+    "seeThrough"
+  );
+  createGroup(
+  "touchGroup",
+  "촉감",
+  "touch"
+);
+
+}
+
+function createGroup(
+  containerId,
+  title,
+  key
+){
+
+  const box =
+    document.getElementById(
+      containerId
+    );
+
+  const items = filterOptions[key];
+
+  box.innerHTML = `
+
+    <h4
+      style="
+        margin-bottom:15px;
+        font-size:16px;
+      "
+    >
+
+      ${title}
+
+    </h4>
+
+    <div
+      class="filter-items"
+    ></div>
+
+  `;
+
+  const wrap =
+    box.querySelector(
+      ".filter-items"
+    );
+
+  items.forEach(item => {
+
+    const chip =
+      document.createElement(
+        "div"
+      );
+
+    chip.className =
+      "filter-chip";
+
+    chip.textContent =
+      item;
+
+    if(
+      selectedFilters[key]
+      .includes(item)
+    ){
+      chip.classList.add(
+        "active"
+      );
+    }
+
+    chip.onclick = () => {
+
+      chip.classList.toggle(
+        "active"
+      );
+
+      if(
+        chip.classList.contains(
+          "active"
+        )
+      ){
+
+        if(
+          !selectedFilters[key]
+            .includes(item)
+        ){
+          selectedFilters[key]
+            .push(item);
+        }
+
+      }else{
+
+        selectedFilters[key] =
+          selectedFilters[key]
+            .filter(
+              v => v !== item
+            );
+
+      }
+
+    };
+
+    wrap.appendChild(chip);
+
+  });
+
+}
+
+document
+  .getElementById(
+    "applyFilter"
+  )
+  .addEventListener(
+    "click",
+    applyFilters
+  );
+
+function applyFilters(){
+
+  const keyword =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+  filteredProducts =
+    products.filter(product => {
+
+      const searchMatch =
+        product.name
+          .toLowerCase()
+          .includes(keyword);
+
+      const colorMatch =
+        !selectedFilters.color.length
+        ||
+        selectedFilters.color
+          .includes(
+            product.color
+          );
+
+      const thicknessMatch =
+        !selectedFilters.thickness.length
+        ||
+        selectedFilters.thickness
+          .includes(
+            product.thickness
+          );
+
+      const stretchMatch =
+        !selectedFilters.stretch.length
+        ||
+        selectedFilters.stretch
+          .includes(
+            product.stretch
+          );
+
+      const seeThroughMatch =
+        !selectedFilters
+          .seeThrough.length
+        ||
+        selectedFilters
+          .seeThrough
+          .includes(
+            product.seeThrough
+          );
+          const touchMatch =
+          !selectedFilters.touch.length ||
+          selectedFilters.touch.includes(
+          product.touch
+          );
+
+      return (
+
+        searchMatch
+        &&
+        colorMatch
+        &&
+        thicknessMatch
+        &&
+        stretchMatch
+        &&
+        seeThroughMatch
+        &&
+        touchMatch
+      );
+
+    });
+
+  sortProducts(
+    sortSelect.value
+  );
+
+  renderProducts(true);
+
+  document
+    .getElementById(
+      "filterModal"
+    )
+    .classList.remove(
+      "show"
+    );
+
+}
+
+document
+.getElementById("resetFilter")
+.onclick = () => {
+
+  selectedFilters = {
+    color: [],
+    thickness: [],
+    stretch: [],
+    seeThrough: [],
+    touch: []
+  };
+
+  renderFilterModal();
+
+};
 
 </script>
 
@@ -858,6 +1178,7 @@ document
     >
       💬 문의
     </a>
+    
 
   </div>
 
@@ -967,6 +1288,51 @@ document
   </div>
 </div>
 </div>
+<div id="filterModal"
+     class="filter-modal">
 
+  <div class="filter-box">
+
+    <span id="closeFilter"
+          class="filter-close">
+
+      ✕
+
+    </span>
+
+    <h3>필터</h3>
+
+    <div id="colorGroup"></div>
+
+    <div class="filter-row">
+
+      <div id="thicknessGroup"></div>
+
+      <div id="stretchGroup"></div>
+
+      <div id="seeThroughGroup"></div>
+      <div id="touchGroup"></div>
+
+    </div>
+
+    <div class="filter-footer">
+
+      <button id="resetFilter">
+
+        초기화
+
+      </button>
+
+      <button id="applyFilter">
+
+        적용
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
