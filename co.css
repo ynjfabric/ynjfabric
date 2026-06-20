@@ -198,13 +198,13 @@ header h2 {
 
 .item {
   position: relative;
-  overflow: hidden;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  transition: 0.3s;
   text-align: center;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .item:hover {
@@ -260,7 +260,7 @@ header h2 {
 .product-name {
   width: 100%;
   margin-top: 12px;
-  padding: 14px 10px;
+  padding: 0 10px;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -272,6 +272,7 @@ header h2 {
 
 .product-price {
   margin-top: 4px;
+  margin-bottom: 14px;
   font-size: 15px;
   font-weight: 700;
   color: #d11a2a;
@@ -300,12 +301,12 @@ header h2 {
   position: relative;
   width: 100%;
   max-width: 1200px;
+  background: white;
+  border-radius: 22px;
   display: flex;
   gap: 30px;
   overflow: hidden;
   padding: 30px;
-  background: white;
-  border-radius: 22px;
 }
 
 /* 왼쪽 이미지 */
@@ -470,7 +471,7 @@ header h2 {
 }
 
 /* =========================
-   고정 버튼
+   맨 위 버튼
 ========================= */
 
 #topBtn {
@@ -503,6 +504,10 @@ header h2 {
   transform: translateY(-3px);
 }
 
+/* =========================
+   카카오 버튼
+========================= */
+
 #kakaoBtn {
   position: fixed;
   right: 20px;
@@ -527,6 +532,10 @@ header h2 {
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
+
+/* =========================
+   필터 버튼
+========================= */
 
 .filter-btn {
   position: fixed;
@@ -573,12 +582,12 @@ header h2 {
 }
 
 .filter-box {
-  position: relative;
   width: 90%;
   max-width: 500px;
-  padding: 30px 20px;
   background: white;
   border-radius: 20px;
+  padding: 30px 20px;
+  position: relative;
 }
 
 .filter-box h3 {
@@ -609,7 +618,11 @@ header h2 {
   gap: 10px;
 }
 
+/* 체크박스 스타일 수정:
+   누르기 전 박스 모양 유지 + 체크만 표시 */
+
 .filter-chip {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -617,17 +630,40 @@ header h2 {
   background: none;
   font-size: 13px;
   cursor: pointer;
-  padding: 4px 0;
+  padding: 4px 0 4px 30px;
+  color: #222;
+  line-height: 1.3;
 }
 
 .filter-chip::before {
-  content: "□";
-  font-size: 21px;
-  line-height: 1;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 2px solid #222;
+  border-radius: 4px;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-.filter-chip.active::before {
-  content: "☑";
+.filter-chip::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  width: 5px;
+  height: 10px;
+  border-right: 2px solid #222;
+  border-bottom: 2px solid #222;
+  transform: translateY(-60%) rotate(45deg);
+  opacity: 0;
+}
+
+.filter-chip.active::after {
+  opacity: 1;
 }
 
 .filter-chip.active {
@@ -659,9 +695,11 @@ header h2 {
   color: white;
 }
 
+/* 색상 5개씩 */
+
 #colorGroup .filter-items {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
 }
 
@@ -748,13 +786,15 @@ header h2 {
   }
 
   .product-name {
-    padding: 10px 5px;
+    margin-top: 10px;
+    padding: 0 5px;
     font-size: 14px;
     line-height: 1.2;
   }
 
   .product-price {
     font-size: 13px;
+    margin-bottom: 10px;
   }
 
   .soldout-badge {
@@ -846,9 +886,17 @@ header h2 {
   .filter-chip {
     font-size: 13px;
     gap: 6px;
+    padding-left: 28px;
   }
 
   .filter-chip::before {
-    font-size: 18px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .filter-chip::after {
+    left: 5px;
+    width: 4px;
+    height: 8px;
   }
 }
