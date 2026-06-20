@@ -918,20 +918,20 @@ header h2 {
     font-size: 14px;
   }
 
-  .filter-chip {
-    font-size: 13px;
-    gap: 6px;
-    padding-left: 28px;
+  .filter-chip{
+    font-size:13px;
+    gap:6px;
   }
 
-  .filter-chip::before {
-    width: 16px;
-    height: 16px;
+  .filter-chip input[type="checkbox"]{
+    width:16px;
+    height:16px;
   }
 
-  .filter-chip::after {
-    left: 5px;
-    width: 4px;
-    height: 8px;
+  .filter-chip input[type="checkbox"]:checked::after{
+    left:3px;
+    top:0;
+    width:4px;
+    height:8px;
   }
 }
