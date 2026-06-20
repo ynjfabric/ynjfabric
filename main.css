@@ -646,4 +646,86 @@ nav{
   }
 
 }
+/* =========================
+   사업자 정보
+========================= */
+}
+/* =========================
+   사업자 정보
+========================= */
+
+.footer{
+  margin-top:80px;
+  padding:50px 20px;
+  background:#f8f8f8;
+  border-top:1px solid #e5e5e5;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+/* PC에서는 버튼 숨김 */
+.business-toggle{
+  display:none;
+}
+
+/* PC 사업자 정보 카드 */
+.business-info{
+  background:#fff;
+  border:1px solid #e5e5e5;
+  border-radius:16px;
+  padding:30px;
+
+  color:#666;
+  font-size:14px;
+  line-height:2;
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+
+.business-info p{
+  margin:8px 0;
+}
+
+/* 모바일 */
+@media (max-width:768px){
+
+  .business-toggle{
+    display:block;
+    width:100%;
+
+    background:none;
+    border:none;
+
+    padding:15px 0;
+
+    text-align:left;
+    font-size:15px;
+    font-weight:600;
+
+    color:#222;
+    cursor:pointer;
+  }
+
+  .business-info{
+    max-height:0;
+    overflow:hidden;
+
+    padding:0;
+
+    border:none;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+
+    transition:max-height .3s ease;
+  }
+
+  .business-info.open{
+    max-height:300px;
+    padding-top:15px;
+  }
+
 }
