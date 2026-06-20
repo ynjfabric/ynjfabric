@@ -930,11 +930,15 @@ header h2 {
   #kakaoBtn {
     right: 15px;
     bottom: 75px;
+    width: 46px;
+    height: 46px;
   }
 
   .filter-btn {
     right: 15px;
     bottom: 130px;
+    width: 46px;
+    height: 46px;
     font-size: 14px;
   }
 
