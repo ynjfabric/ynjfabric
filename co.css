@@ -820,12 +820,14 @@ header h2{
   }
 
   #kakaoBtn{
-    width:46px;
-    height:46px;
-    right:15px;
-    bottom:75px;
-    font-size:20px;
-  }
+  right:15px;
+  bottom:75px;
+}
+
+.filter-btn{
+  right:15px;
+  bottom:135px;
+}
 
 }
 .product-name{
@@ -874,14 +876,6 @@ header h2{
 
   .product-price{
     font-size:13px;
-  }
-
-}
-@media (max-width:768px){
-
-  .filter-btn{
-    right:15px;
-    bottom:135px;
   }
 
 }
@@ -1011,11 +1005,11 @@ header h2{
 
 .filter-btn{
   position:fixed;
-  right:20px;   /* 카카오 버튼과 동일 */
+  right:20px;
   bottom:145px;
 
-  width:50px;
-  height:50px;
+  width:52px;
+  height:52px;
 
   border:none;
   border-radius:50%;
@@ -1032,6 +1026,23 @@ header h2{
 
   box-shadow:0 4px 12px rgba(0,0,0,.2);
   transition:0.3s;
+}
+
+.filter-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+
+@media (max-width:768px){
+
+  .filter-btn{
+    right:15px;     /* 카카오 버튼과 동일 */
+    bottom:135px;   /* 카카오 버튼 위 */
+    width:46px;
+    height:46px;
+    font-size:16px;
+  }
+
 }
 .filter-btn:hover{
   transform:translateY(-3px);
