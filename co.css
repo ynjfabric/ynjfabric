@@ -179,6 +179,59 @@ header h2 {
 }
 
 /* =========================
+   검색 / 정렬
+========================= */
+
+.search-wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto 10px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  flex: 1;
+}
+
+.search-box input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: #222;
+}
+
+.sort-box {
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.sort-box select {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0 12px;
+  font-size: 15px;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.sort-box select:focus {
+  border-color: #222;
+}
+
+/* =========================
    상품
 ========================= */
 
@@ -214,7 +267,7 @@ header h2 {
 
 /* 이미지 */
 
-.item-image-wrap {
+.main-product-image-wrap {
   position: relative;
 }
 
@@ -286,11 +339,11 @@ header h2 {
   display: none;
   position: fixed;
   inset: 0;
+  background: rgba(0, 0, 0, 0.85);
   z-index: 99999;
-  background: rgba(0, 0, 0, 0.88);
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 20px;
 }
 
 .modal.show {
@@ -302,35 +355,36 @@ header h2 {
   width: 100%;
   max-width: 1200px;
   background: white;
-  border-radius: 22px;
-  display: flex;
-  gap: 30px;
+  border-radius: 20px;
   overflow: hidden;
-  padding: 30px;
+  display: flex;
+  gap: 0;
+  max-height: 90vh;
 }
-
-/* 왼쪽 이미지 */
 
 .modal-left {
   flex: 1;
-  min-width: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .modal-image {
   width: 100%;
-  max-height: 75vh;
+  max-height: 80vh;
   object-fit: contain;
-  border-radius: 14px;
+  border-radius: 12px;
   background: #f7f7f7;
 }
 
-/* 오른쪽 정보 */
-
 .modal-right {
-  width: 380px;
+  width: 420px;
+  background: white;
+  padding: 35px;
+  overflow-y: auto;
 }
-
-/* 상단 */
 
 .modal-top {
   display: flex;
@@ -340,21 +394,13 @@ header h2 {
   margin-bottom: 25px;
 }
 
-.modal-top-left {
-  flex: 1;
-}
-
-/* 상품명 */
-
 .modal-product-name {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 32px;
   color: #111;
   line-height: 1.3;
   word-break: keep-all;
+  flex: 1;
 }
-
-/* 버튼 그룹 */
 
 .modal-btn-group {
   display: flex;
@@ -362,8 +408,6 @@ header h2 {
   gap: 10px;
   flex-shrink: 0;
 }
-
-/* 공통 버튼 */
 
 .modal-copy-btn,
 .modal-kakao-btn {
@@ -382,74 +426,61 @@ header h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* 복사 버튼 */
-
 .modal-copy-btn {
   background: #f3f3f3;
   color: #222;
 }
-
-/* 문의 버튼 */
 
 .modal-kakao-btn {
   background: #FEE500;
   color: #3C1E1E;
 }
 
-/* hover */
-
 .modal-copy-btn:hover,
 .modal-kakao-btn:hover {
   transform: translateY(-2px);
 }
 
-/* 상세 정보 */
-
 .modal-detail-box {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-bottom: 25px;
 }
 
 .modal-detail-item {
-  padding-bottom: 12px;
   border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
 }
 
 .modal-detail-label {
   font-size: 13px;
-  color: #777;
+  color: #888;
   margin-bottom: 5px;
 }
 
 .modal-detail-value {
   font-size: 17px;
-  font-weight: 600;
   color: #222;
+  font-weight: 600;
   line-height: 1.4;
+  word-break: break-word;
 }
-
-/* 설명 */
 
 .modal-description {
-  margin-top: 20px;
-  padding: 16px;
-  background: #f8f8f8;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
   color: #444;
-  white-space: pre-line;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
-
-/* 닫기 버튼 */
 
 .modal-close {
   position: absolute;
-  top: 18px;
-  right: 24px;
-  font-size: 42px;
-  color: #111;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 44px;
   cursor: pointer;
   z-index: 100000;
   line-height: 1;
@@ -583,7 +614,7 @@ header h2 {
 
 .filter-box {
   width: 90%;
-  max-width: 500px;
+  max-width: 720px;
   background: white;
   border-radius: 20px;
   padding: 30px 20px;
@@ -592,10 +623,17 @@ header h2 {
 
 .filter-box h3 {
   font-size: 24px;
+  margin-bottom: 22px;
 }
 
-.filter-box h4 {
-  font-size: 15px;
+.filter-group {
+  margin-bottom: 24px;
+}
+
+.filter-group h4 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #111;
 }
 
 .filter-close {
@@ -608,7 +646,7 @@ header h2 {
 
 .filter-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
@@ -618,31 +656,9 @@ header h2 {
   gap: 10px;
 }
 
-/* 체크박스 스타일 수정:
-   누르기 전 박스 모양 유지 + 체크만 표시 */
-
+/* 체크박스 보이도록 수정 */
 .filter-chip {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
-  background: none;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 4px 0 4px 30px;
-  color: #222;
-  line-height: 1.3;
-}
-
-.filter-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.filter-chip {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   border: none;
@@ -651,34 +667,36 @@ header h2 {
   cursor: pointer;
   color: #222;
   line-height: 1.4;
+  user-select: none;
 }
 
-/* 실제 checkbox 커스텀 */
+.filter-chip-text {
+  word-break: keep-all;
+}
+
 .filter-chip input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
-
+  display: inline-block;
   width: 18px;
   height: 18px;
+  min-width: 18px;
   margin: 0;
   flex-shrink: 0;
-
   border: 2px solid #222;
   border-radius: 4px;
   background: #fff;
-
   position: relative;
   cursor: pointer;
+  vertical-align: middle;
 }
 
-/* 체크되었을 때도 박스 모양 유지 */
 .filter-chip input[type="checkbox"]:checked {
   background: #fff;
   border-color: #222;
 }
 
-/* 박스 안에 체크만 표시 */
-.filter-chip input[type="checkbox"]:checked::after {
+.filter-chip input[type="checkbox"]::before {
   content: "";
   position: absolute;
   left: 4px;
@@ -688,24 +706,33 @@ header h2 {
   border-right: 2px solid #222;
   border-bottom: 2px solid #222;
   transform: rotate(45deg);
+  opacity: 0;
 }
 
-/* 색상 5개씩 */
+.filter-chip input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.filter-chip.active .filter-chip-text {
+  font-weight: 700;
+}
+
+/* 색상 */
 #colorGroup .filter-items {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
 }
 
+/* 세로형 그룹 */
 #thicknessGroup .filter-items,
 #stretchGroup .filter-items,
 #seeThroughGroup .filter-items,
 #touchGroup .filter-items {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
-
 
 .filter-footer {
   display: flex;
@@ -719,32 +746,17 @@ header h2 {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 #resetFilter {
   background: #eee;
+  color: #222;
 }
 
 #applyFilter {
   background: #222;
   color: white;
-}
-
-/* 색상 5개씩 */
-
-#colorGroup .filter-items {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-
-#thicknessGroup .filter-items,
-#stretchGroup .filter-items,
-#seeThroughGroup .filter-items,
-#touchGroup .filter-items {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 /* =========================
@@ -807,6 +819,20 @@ header h2 {
     font-size: 26px;
   }
 
+  .search-wrap {
+    gap: 8px;
+  }
+
+  .sort-box {
+    width: 120px;
+  }
+
+  .search-box input,
+  .sort-box select {
+    height: 46px;
+    font-size: 14px;
+  }
+
   .products {
     padding: 35px 10px 60px;
   }
@@ -840,7 +866,6 @@ header h2 {
   }
 
   /* 모달 */
-
   .modal {
     padding: 12px;
     align-items: flex-start;
@@ -849,17 +874,21 @@ header h2 {
 
   .modal-content-wrap {
     flex-direction: column;
-    gap: 18px;
-    padding: 18px;
-    margin-top: 40px;
+    max-height: 92vh;
+    gap: 0;
   }
 
-  .modal-right {
-    width: 100%;
+  .modal-left {
+    padding: 12px;
   }
 
   .modal-image {
     max-height: 45vh;
+  }
+
+  .modal-right {
+    width: 100%;
+    padding: 22px;
   }
 
   .modal-top {
@@ -880,7 +909,8 @@ header h2 {
   }
 
   .modal-product-name {
-    font-size: 22px;
+    font-size: 24px;
+    margin-bottom: 0;
   }
 
   .modal-detail-value {
@@ -888,13 +918,13 @@ header h2 {
   }
 
   .modal-description {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .modal-close {
-    top: 10px;
-    right: 16px;
-    font-size: 34px;
+    top: 14px;
+    right: 18px;
+    font-size: 36px;
   }
 
   #topBtn {
@@ -918,20 +948,36 @@ header h2 {
     font-size: 14px;
   }
 
-  .filter-chip{
-    font-size:13px;
-    gap:6px;
+  .filter-box {
+    width: 92%;
+    padding: 24px 16px;
   }
 
-  .filter-chip input[type="checkbox"]{
-    width:16px;
-    height:16px;
+  .filter-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
-  .filter-chip input[type="checkbox"]:checked::after{
-    left:3px;
-    top:0;
-    width:4px;
-    height:8px;
+  .filter-chip {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .filter-chip input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+  }
+
+  .filter-chip input[type="checkbox"]::before {
+    left: 3px;
+    top: 0px;
+    width: 4px;
+    height: 8px;
+  }
+
+  #colorGroup .filter-items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
