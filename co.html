@@ -538,36 +538,43 @@ function renderProducts(reset = true){
 
     div.innerHTML = `
 
-      <div class="item-image-wrap">
+  <div class="main-product-image-wrap">
 
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-          class="${
-            product.soldOut
-            ? "soldout-image"
-            : ""
-          }"
-        >
+    ${
+      product.soldOut
+      ? `
+        <div class="soldout-badge">
+          품절
+        </div>
+      `
+      : ""
+    }
 
+    <img
+      src="${product.image}"
+      alt="${product.name}"
+      class="
+        main-product-image
         ${
           product.soldOut
-          ? `
-            <div class="soldout-badge">
-              품절
-            </div>
-          `
+          ? "soldout-image"
           : ""
         }
+      "
+      loading="lazy"
+    >
 
-      </div>
+  </div>
 
-      <p class="product-name">
-        ${product.name}
-      </p>
+  <p class="product-name">
+    ${product.name}
+  </p>
 
-    `;
+  <p class="product-price">
+    ₩${Number(product.price || 0).toLocaleString()}
+  </p>
+
+`;
 
     grid.appendChild(div);
 

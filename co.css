@@ -828,3 +828,52 @@ header h2{
   }
 
 }
+.product-name{
+  margin-top:12px;
+  font-size:16px;
+  font-weight:600;
+  color:#222;
+}
+
+.product-price{
+  margin-top:4px;
+  font-size:15px;
+  font-weight:700;
+  color:#d11a2a;
+}
+@media (max-width:768px){
+
+  .product-name{
+    font-size:14px;
+  }
+
+  .product-price{
+    font-size:13px;
+  }
+
+}
+.product-name{
+  margin-top:12px;
+  font-size:16px;
+  font-weight:600;
+  color:#222;
+}
+
+.product-price{
+  margin-top:4px;
+  font-size:15px;
+  font-weight:700;
+  color:#d11a2a;
+}
+
+@media (max-width:768px){
+
+  .product-name{
+    font-size:14px;
+  }
+
+  .product-price{
+    font-size:13px;
+  }
+
+}
