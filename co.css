@@ -750,28 +750,6 @@ header h2 {
 /* =========================
    모바일
 ========================= */
-@media (max-width: 768px) {
-  .filter-chip {
-    font-size: 13px;
-    gap: 6px;
-  }
-
-  .filter-chip input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
-
-  .filter-chip input[type="checkbox"]:checked::after {
-    left: 3px;
-    top: 0px;
-    width: 4px;
-    height: 8px;
-  }
-
-  #colorGroup .filter-items {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
 
 @media (max-width: 768px) {
   header {
@@ -930,8 +908,6 @@ header h2 {
   #kakaoBtn {
     right: 15px;
     bottom: 75px;
-    width: 46px;
-    height: 46px;
   }
 
   .filter-btn {
