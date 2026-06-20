@@ -635,42 +635,77 @@ header h2 {
   line-height: 1.3;
 }
 
-.filter-chip::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.filter-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  cursor: pointer;
+  color: #222;
+  line-height: 1.4;
+}
+
+/* 실제 checkbox 커스텀 */
+.filter-chip input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+
   width: 18px;
   height: 18px;
+  margin: 0;
+  flex-shrink: 0;
+
   border: 2px solid #222;
   border-radius: 4px;
   background: #fff;
-  box-sizing: border-box;
+
+  position: relative;
+  cursor: pointer;
 }
 
-.filter-chip::after {
+/* 체크되었을 때도 박스 모양 유지 */
+.filter-chip input[type="checkbox"]:checked {
+  background: #fff;
+  border-color: #222;
+}
+
+/* 박스 안에 체크만 표시 */
+.filter-chip input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
-  left: 6px;
-  top: 50%;
+  left: 4px;
+  top: 0px;
   width: 5px;
   height: 10px;
   border-right: 2px solid #222;
   border-bottom: 2px solid #222;
-  transform: translateY(-60%) rotate(45deg);
-  opacity: 0;
+  transform: rotate(45deg);
 }
 
-.filter-chip.active::after {
-  opacity: 1;
+/* 색상 5개씩 */
+#colorGroup .filter-items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
 }
 
-.filter-chip.active {
-  background: none;
-  color: #222;
-  border: none;
+#thicknessGroup .filter-items,
+#stretchGroup .filter-items,
+#seeThroughGroup .filter-items,
+#touchGroup .filter-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
+
 
 .filter-footer {
   display: flex;
@@ -715,6 +750,28 @@ header h2 {
 /* =========================
    모바일
 ========================= */
+@media (max-width: 768px) {
+  .filter-chip {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .filter-chip input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  .filter-chip input[type="checkbox"]:checked::after {
+    left: 3px;
+    top: 0px;
+    width: 4px;
+    height: 8px;
+  }
+
+  #colorGroup .filter-items {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
 
 @media (max-width: 768px) {
   header {
