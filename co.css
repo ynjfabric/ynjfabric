@@ -695,7 +695,7 @@ header h2 {
 /* 색상 5개씩 */
 #colorGroup .filter-items {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
