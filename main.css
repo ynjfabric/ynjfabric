@@ -509,6 +509,43 @@ nav{
   font-size:24px;
   font-weight:bold;
 }
+.recent-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.4;
+}
+.filter-box {
+  width: 90%;
+  max-width: 850px;
+  background: white;
+  border-radius: 20px;
+  padding: 35px;
+  position: relative;
+}
+
+.filter-box h3 {
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+.recent-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recent-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.4;
+}
+
+.recent-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #d11a2a;
+}
 @media (max-width:768px){
 
   header{
@@ -638,14 +675,11 @@ nav{
   left:15px;
   bottom:15px;
 }
-@media (max-width:768px){
-
   .slider-title{
     font-size:22px;
     margin-bottom:15px;
   }
 
-}
 /* =========================
    사업자 정보
 ========================= */
@@ -688,10 +722,69 @@ nav{
 .business-info p{
   margin:8px 0;
 }
+.filter-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 99999;
+}
 
-/* 모바일 */
-@media (max-width:768px){
+.filter-modal.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.filter-box{
+  width:90%;
+  max-width:800px;
+  background:white;
+  border-radius:20px;
+  padding:30px;
+  position:relative;
+}
+.filter-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#recentList{
+  margin-top:25px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.recent-item{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px;
+  border:1px solid #eee;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.recent-item:hover{
+  background:#f8f8f8;
+}
+
+.recent-item:hover{
+  background:#f8f8f8;
+}
+
+.recent-item img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:12px;
+  flex-shrink:0;
+}
   .business-toggle{
     display:block;
     width:100%;
@@ -728,4 +821,39 @@ nav{
     padding-top:15px;
   }
 
+.slide-caption{
+    font-size:18px;
+    left:15px;
+    bottom:15px;
+  }
+
+  .slider-title{
+    font-size:22px;
+    margin-bottom:15px;
+  }
+  .recent-img {
+  width: 55px;
+  height: 55px;
+}
+
+.recent-name {
+  font-size: 14px;
+}
+.recent-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recent-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.4;
+}
+
+.recent-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
 }

@@ -244,11 +244,11 @@
       🏠
     </a>
 
-    <a href="order.html"
-       title="문의"
-       class="icon-btn">
-      💬
-    </a>
+    <a href="#"
+     id="recentBtn"
+     class="icon-btn recent-btn">
+    🕒
+  </a>
 
   </nav>
 
@@ -409,6 +409,7 @@ const searchInput =
 
 const sortSelect =
   document.getElementById("sortSelect");
+const recentKey = "recentProducts";
 
 let page = 0;
 
@@ -748,7 +749,37 @@ topBtn.addEventListener("click", () => {
 });
 
 loadProducts();
+function saveRecentProduct(product){
 
+  if(!product) return;
+
+  let recent =
+    JSON.parse(
+      localStorage.getItem("recentProducts")
+    ) || [];
+
+  // 이미 있으면 제거
+  recent = recent.filter(
+    p => p.id !== product.id
+  );
+
+  // 맨 앞에 추가
+  recent.unshift({
+    id: product.id,
+    name: product.name,
+    image: product.image,
+    price: product.price
+  });
+
+  // 10개만 유지
+  recent = recent.slice(0, 10);
+
+  localStorage.setItem(
+    "recentProducts",
+    JSON.stringify(recent)
+  );
+
+}
 /* =========================
    상품 팝업
 ========================= */
@@ -765,6 +796,7 @@ document.addEventListener("click", function(e){
 
   const product =
     filteredProducts[index];
+    saveRecentProduct(product);
     if(product.id){
 
   updateDoc(
@@ -1108,7 +1140,90 @@ document
   renderFilterModal();
 
 };
+document
+.getElementById("recentBtn")
+.onclick = e => {
 
+  e.preventDefault();
+
+  const recent =
+    JSON.parse(
+      localStorage.getItem(recentKey)
+    ) || [];
+
+  const box =
+    document.getElementById(
+      "recentList"
+    );
+
+  if(recent.length === 0){
+
+    box.innerHTML =
+      "<p>최근 본 상품이 없습니다.</p>";
+
+  }else{
+
+    box.innerHTML =
+      recent.map(p => `
+        <div
+          style="
+            display:flex;
+            gap:15px;
+            align-items:center;
+            margin-bottom:15px;
+          ">
+
+          <img
+            src="${p.image}"
+            style="
+              width:80px;
+              height:80px;
+              object-fit:cover;
+              border-radius:10px;
+            ">
+
+          <div>
+
+            <div>
+              ${p.name}
+            </div>
+
+            <div>
+              ₩${Number(
+                p.price || 0
+              ).toLocaleString()}
+            </div>
+
+          </div>
+
+        </div>
+      `).join("");
+
+  }
+
+  document
+    .getElementById(
+      "recentModal"
+    )
+    .classList.add(
+      "show"
+    );
+
+};
+document
+.getElementById("closeRecent")
+.onclick = () => {
+
+  document
+    .getElementById(
+      "recentModal"
+    )
+    .classList.remove(
+      "show"
+    );
+
+};
+updateRecentCount();
 </script>
 
 <!-- 상품 확대 팝업 -->
@@ -1308,6 +1423,22 @@ document
       </button>
 
     </div>
+
+  </div>
+
+</div>
+<div id="recentModal" class="filter-modal">
+
+  <div class="filter-box">
+
+    <span id="closeRecent"
+          class="filter-close">
+      ✕
+    </span>
+
+    <h3>최근 본 상품</h3>
+
+    <div id="recentList"></div>
 
   </div>
 
